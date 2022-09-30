@@ -1,0 +1,34 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+#AddFundsContainer{
+    justify-content: center;
+    justify-items: center;
+}
+#cardNumber{
+    width: 190px;
+}
+#cvc{
+    width: 95px;
+}
+#pin{
+    width: 95px;
+}
+#expireDate{
+    width: 155px;
+}
+#fundsRegister{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#sold{
+    width: 190px
+}
+.form-group{
+    padding-left: 10vw;
+}
+.text-danger{
+    font-size: 70%;
+}
+.text-danger div{
+    color: red;
+}

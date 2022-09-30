@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+*{
+    font-size: 10px;
+}
+.cropedImage{
+    justify-self: center;
+    margin-top: 10%;
+    width: 100px;
+    height: 150px;
+    overflow: hidden;
+    justify-content: center;
+}
+.productImage{
+    justify-self: center;
+    width: auto;
+    height: 100%;
+}
+
+.starNumber{
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 15px;
+}
+.checked {
+    color: orange;
+}
+#productData{
+    text-align: center;
+    padding-top: 0px;
+}
+.textProduct p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 20px;
+}
+.textProduct div{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 20px;
+}

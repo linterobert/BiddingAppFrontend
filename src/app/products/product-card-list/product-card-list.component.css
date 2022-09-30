@@ -1,0 +1,22 @@
+.product{
+    border-radius: 5vh;
+    min-width: 250px;
+    min-height: 450px;
+    max-width: 30%;
+    max-height: 30%;
+    display: grid;
+    flex-direction: column;
+    background-color: gray;
+    margin: auto;
+    justify-content: center;
+}
+
+app-product-card{
+    width: auto;
+    height: auto;
+}
+.product:hover{
+    transform: scale(1.1);
+    color: white;
+    
+}

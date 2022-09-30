@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+
+#profileContainer{
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-style:inset;
+    font-size: 20%;
+}
+#accountDetails{
+    margin: auto;
+    margin-top: 1vh;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: wrap;
+    flex-wrap: wrap;
+    text-align: center;
+}
+#cropedImage{
+    border-style:solid;
+    border-color: darkgrey;
+    justify-items: center;
+    min-width: none;
+    width: 30%;
+    height: 80%;
+    margin: auto;
+    overflow: hidden;
+
+}
+#cropedImage > img{
+    display: block;
+    margin: auto;
+    width: 100%;
+}
+#informations{
+    font-size: 110%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#informations > p {
+    height: 5%;
+}
+#informations > button{
+    display: flex;
+    margin-top: 5%;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    height: 50px;
+    width: 100px;
+}
+
+.commands{
+    display: flex;
+    flex-direction: column;
+    columns: 1;
+    width: 80%;
+    height:40px;
+    background:darkgray;
+    color:#fff;
+    position:relative;
+    line-height:40px;
+    margin: auto;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
+.commands:after{
+    content:"";
+    position:absolute;
+    height:0;
+    width:0;
+    left:100%;
+    top:0;
+    border:20px solid transparent;
+    border-left: 20px solid darkgray;
+}
+.commandsBar{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+@media (max-width:1024px){
+    #accountDetails{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    #cropedImage {
+        width: 70vw;
+        height: 70vw;
+        justify-content: center;
+        padding: auto;
+    }
+    #informations{
+        width: 80%;
+        display: grid;
+        grid-column: 1;
+        justify-content: center;
+        margin: auto;
+    }
+    #informations button{
+        margin: auto;
+    }
+    #cropedImage > img{
+        width: 100%;
+        margin-top: auto;
+        margin-bottom: auto;
+        height: auto;
+    }
+
+}

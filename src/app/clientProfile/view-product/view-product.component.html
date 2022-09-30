@@ -1,0 +1,18 @@
+<div class = 'cropedImage'>
+    <img class = 'productImage' src = {{productCard.profilePhoto}}>
+</div>
+<div id = 'productData'>
+    <div class = 'starNumber'>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+    </div>
+    <div class = 'textProduct'>
+        <p class = 'rating'>Rating: {{productCard.starNumber}}</p>
+        <p class = 'productTitle'>{{productCard.name | titlecase}}</p>
+        <div class = 'timer'>{{productCard.finalTime.toString() | countdown}}</div>
+        <p class = 'actualPrice'>{{productCard.price}}</p>
+    </div>
+</div>

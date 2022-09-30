@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <app-header id = 'menu'>
+
+    </app-header>
+    <div id = 'priceFilter'>
+        <p>Products filter: </p>
+        <p>min: </p>
+        <input [defaultValue]="100">
+        <input type="range" min="0" max = "800" step = "1">
+        <p>max: </p>
+        <input [defaultValue]="900">
+        <button><mat-icon>search</mat-icon></button>
+    </div>
+
+    <app-product-card-list id = 'productList' [product_list]="products">
+    </app-product-card-list>
+   
+    <div id="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#" id = 'page1'></a>
+        <a href="#" class="active" id = 'page2'></a>
+        <a href="#" id = 'page3'></a>
+        <a href="#" id = 'page4'></a>
+        <a href="#" id = 'page5'></a>
+        <a href="#" id = 'page6'></a>
+        <a href="#">&raquo;</a>
+    </div>
+    <app-footer></app-footer>
+  </body>
+</html>

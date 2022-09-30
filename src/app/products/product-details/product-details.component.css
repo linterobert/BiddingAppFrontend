@@ -1,0 +1,32 @@
+P{
+    font-size: 25%;
+}
+
+#product-details-container{
+    margin-left: 0px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 0px;
+
+}
+#product-details-text{
+    margin-left: 0px;
+}
+#makeOffer{
+    height: 25px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: row;
+}
+#company-profile-image{
+    margin-right: 0px;
+    width: 200px;
+    height: 200px;
+}
+#company-profile-image > img{
+    margin-right: 0px;
+    max-width: 200px;
+    max-height: 200px;
+}

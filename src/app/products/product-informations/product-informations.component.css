@@ -1,0 +1,22 @@
+#product-informations-container{
+    background-color: aqua;
+    width: 90vw;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-style: solid;
+}
+app-product-details{
+    width: 50%;
+    margin-left: 0px;
+    display: flex;
+    justify-content: flex-start;
+}
+app-product-images{
+    width: 40%;
+    margin: auto;
+}
