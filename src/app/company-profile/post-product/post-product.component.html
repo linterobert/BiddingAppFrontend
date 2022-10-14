@@ -1,0 +1,35 @@
+<div class="col-6">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit3()">
+        <div class="form-group">
+            <label>Product name: </label>
+            <input id = 'sold' type="text" formControlName="productName" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['productName'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['productName']}" />
+            <div *ngIf="error && registerForm.controls['productName'].errors" class="text-danger">
+                <div *ngIf="registerForm.controls['productName'].errors['required']">Product name required!</div>
+            </div>
+            <label>Starting price: </label>
+            <input id = 'cvc' type="number" formControlName="startingPrice" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['startingPrice'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['startingPrice'].errors}" />
+            <div *ngIf="error && registerForm.controls['startingPrice'].errors" class="text-danger">
+                <div *ngIf="registerForm.controls['startingPrice'].errors['required']">Price is required!</div>
+            </div>
+            <label>Expire Date: </label>
+            <input id = 'expireDate' type="datetime-local" formControlName="expireDate" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['expireDate'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['expireDate'].errors}" />
+            <div *ngIf="submitted && registerForm.controls['expireDate'].errors" class="text-danger">
+                <div *ngIf="registerForm.controls['expireDate'].errors['required']">Expire Date is required!</div>
+            </div>
+        </div>
+    
+        <div class = 'imagesContainer'>
+            <div style = 'position: relative;' class="image-area" *ngFor="let image of images">
+                <img [src]="image.photo" width="100px" height="100px">
+                <a class="remove-image" (click)="removeImage(image)" style="display: inline;">&#215;</a>
+            </div>
+        </div>
+        <div class = 'imgAdd'>
+            <input id ='addImg' type = 'file' single value = 'select' #selectFile accept="image/png, image/gif, image/jpeg"
+            (change)="onFileSelected($event)" id = 'input'>
+        </div>
+        <div class="form-group">
+            <button id = 'fundsRegister' class="btn btn-primary" mat-raised-button color="white">Register</button>
+        </div>
+        </form>
+</div>

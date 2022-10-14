@@ -1,0 +1,33 @@
+
+
+    <div id = 'profileContainer'>
+        <div id = 'accountDetails' *ngIf="(companyDetails | async) as company">
+            <div id = 'cropedImage' >
+                <img *ngIf="company.profilePhotoURL != 'default'" src='{{company.profilePhotoURL}}'>
+                <img *ngIf="company.profilePhotoURL == 'default'"  src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
+            </div>
+            <div id = 'informations'>
+                <p>Balance: {{company.companyBalance}}$</p>
+                <p>Company name: {{company.companyName}}</p>
+                <button><mat-icon>exit_to_app</mat-icon><p>Log-out</p></button>
+            </div>
+        </div>
+        <div class = "commands" id = "postNewProduct" >
+          <div class = 'commandsBar' (click) = "postNewProduct()">
+            <p><mat-icon>swap_vert</mat-icon>Post a new product</p>
+          </div>
+          <app-post-product *ngIf="createProductComponent" [companyId]="companyId"></app-post-product>
+        </div>
+        <div class = "commands" id = "soldProductsBar" >
+          <div class = 'commandsBar' (click) = "getSoldProducs()">
+            <p><mat-icon>swap_vert</mat-icon>View your products</p>
+          </div>
+          <app-sold-products *ngIf="soldProductsComponent" [companyId]="companyId"></app-sold-products>
+        </div>
+        <div class = "commands" id = "viewOwnProductsBar" >
+          <div class = 'commandsBar'>
+            <p><mat-icon>swap_vert</mat-icon>Update your account</p>
+          </div>
+        </div>
+    </div>
+

@@ -9,16 +9,17 @@
     height: 400px;
     width: 300px;
     justify-content: center;
-    background-color: aquamarine;
+    background-color: gray;
     display: flex;
     flex-direction: column;
     padding-left : 5%;
-    border-style :solid;
     margin: auto;
 }
 #resizeImage{
+    border: solid;
     max-height: 350px;
     max-width: 250px;
+    justify-self: center;
 }
 #imageList{
     width: 320px;
@@ -36,7 +37,6 @@
 .miniImageContainer{
     height: 90px;
     width: 70px;
-    margin: auto;
     margin-left: 5px;
     margin-bottom: 5px;
 }
@@ -45,4 +45,5 @@
     max-width:  60px;
     justify-self: center;
     margin: auto;
+    margin-bottom: 15px;
 }

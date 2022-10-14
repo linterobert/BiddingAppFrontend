@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import jwt_decode from 'jwt-decode';
+import { Observable } from 'rxjs';
+import { ClientService } from 'src/app/services/client.service';
+import { AuthToken } from 'src/interfaces/token';
 
 @Component({
   selector: 'app-client-profile-page',
@@ -6,6 +10,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client-profile-page.component.css']
 })
 export class ClientProfilePageComponent implements OnInit {
+
+  notification = false
+  client!: Observable<any>
+  clientId = 0;
 
   public changeTheme() : void{
     console.log('a')
@@ -110,6 +118,15 @@ export class ClientProfilePageComponent implements OnInit {
           pagination.style.backgroundColor = "white";
           pagination.style.borderRadius = '5px';
         }
+      }
+      var notifications = document.getElementsByClassName('notification')
+      for(let i = 0; i < notifications.length; i++){
+        var notification = notifications[i] as HTMLElement
+        notification.style.backgroundColor = 'darkgrey'
+      }
+      var bar = document.getElementById('notificationFooter');
+      if(bar){
+        bar.style.backgroundColor = 'darkgrey'
       }
       localStorage.setItem('Theme', 'White')
     }
@@ -219,15 +236,36 @@ export class ClientProfilePageComponent implements OnInit {
       }
     }
   }
-  constructor() { }
+
+  openNotifications(){
+    this.notification = !this.notification;
+  }
+
+  constructor(
+    private clientService : ClientService
+  ) { }
 
   ngOnInit(): void {
+    var not = document.getElementById('openNot');
+    if(not){
+      not.addEventListener('click', () => this.openNotifications());
+    }
+
     document.getElementById("switch")?.addEventListener("click", this.changeTheme);
     var theme = localStorage.getItem('Theme');
     if(theme == 'Black'){
       var button = document.getElementById('check') as HTMLInputElement
       button.checked = true
-      setTimeout(() => this.setTheme(), 1)
+      setTimeout(() => this.setTheme(), 100)
+    }
+
+    var token = localStorage.getItem('token');
+    if(token != null){
+
+      var decode = jwt_decode<AuthToken>(token.toString())
+      
+      this.client = this.clientService.getClientByName(decode['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'])
+      this.client.subscribe(rez => this.clientId = rez.clientProfileId)
     }
   }
 

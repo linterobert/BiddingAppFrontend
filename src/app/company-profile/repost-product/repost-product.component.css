@@ -1,0 +1,20 @@
+mat-dialog-actions{
+    display: flex;
+    flex-direction: row;
+    justify-self:flex-end;
+}
+#newPrice{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+#newFinalTime{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+button{
+    color: azure;
+    background-color: gray
+}

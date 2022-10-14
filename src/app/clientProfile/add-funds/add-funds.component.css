@@ -32,3 +32,47 @@
 .text-danger div{
     color: red;
 }
+#AddSuccess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: auto;
+}
+#AddSuccess > div{
+    margin: auto;
+    width: auto;
+    justify-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: green;
+}
+#AddFundsSuccess{
+    vertical-align: middle;
+    height: auto;
+    width: auto;
+    font-size: 200px;
+    color: green;
+    margin: auto;
+}
+#AddUnsuccess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: auto;
+}
+#AddUnsuccess > div{
+    margin: auto;
+    width: auto;
+    justify-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: red;
+}
+#AddFundsUnsuccess{
+    vertical-align: middle;
+    height: auto;
+    width: auto;
+    font-size: 200px;
+    color: red;
+    margin: auto;
+}

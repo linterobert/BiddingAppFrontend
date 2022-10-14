@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { CreateCard } from 'src/interfaces/create-card';
@@ -10,7 +10,7 @@ import { ClientService } from 'src/app/services/client.service';
   styleUrls: ['./add-card.component.css']
 })
 export class AddCardComponent implements OnInit {
-
+  @Input() clientId = 0;
   registerForm! : FormGroup;
   submitted = false;
   error = false
@@ -38,7 +38,7 @@ export class AddCardComponent implements OnInit {
     this.submitted = true;
     var card : CreateCard = {
       cardNumber : this.registerForm.value['cardNumber'],
-      clientId : 1,
+      clientId : this.clientId,
       cvc : this.registerForm.value['cvc'],
       pin : this.registerForm.value['pin'],
       expireDate : this.registerForm.value['expireDate'],

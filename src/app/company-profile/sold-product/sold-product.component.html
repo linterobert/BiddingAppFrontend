@@ -1,0 +1,29 @@
+<div class = 'productContainer' id = {{productCard.productId}}>
+    <div class = 'cropedImage'>
+        <img *ngIf="(images | async) as Image" class = 'productImage' src = '{{Image.images[0].url}}' (click)="redirect()">
+    </div>
+    <div id = 'productData'>
+        <div class = 'starNumber' *ngIf="(rating | async) as starNumber; else elseBlock">
+            <span class="fa fa-star checked" *ngFor="let item of [].constructor(round(starNumber)); let i = index"></span>
+            <span class="fa fa-star" *ngFor="let item of [].constructor(5- round(starNumber)); let i = index"></span>
+        </div>
+        <ng-template #elseBlock>
+            <div class = 'starNumber'>
+                <span class="fa fa-star checked" *ngFor = "let item of [].constructor(starNumber); let i = index"></span>
+                <span class="fa fa-star" *ngFor = "let item of [].constructor(5-starNumber); let i = index"></span>
+            </div>
+        </ng-template>
+        <div class = 'textProduct'>
+            <p class = 'rating' *ngIf="(rating | async) as starNumber">Rating: {{starNumber}}</p>
+            <p class = 'rating' *ngIf="!(rating | async) as starNumber">Rating: 0</p>
+            <p class = 'productTitle'>{{productCard.productName | titlecase}}</p>
+            <p class = 'productName'>ProductID: {{productCard.productId}}</p>
+            <div class = 'timer'>{{productCard.finalTime | countdown}}</div>
+            <p class = 'actualPrice'>Actual price: {{productCard.actualPrice}}$</p>
+            <p class = 'owner' *ngIf="productCard.clientProfileName != null">Owner: {{productCard.clientProfileName}}</p>
+            <p class = 'owner' *ngIf="productCard.clientProfileName == null">Owner: none</p>
+            <button class = 'cashOut' *ngIf="!productCard.cashOut && cashOut" (click)="cashOutProduct()">Cash out</button>
+            <button mat-raised-button class = 'repost' *ngIf="repost" (click)="openDialog()">Repost</button>
+        </div>
+    </div>
+</div>

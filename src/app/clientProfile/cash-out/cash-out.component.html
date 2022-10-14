@@ -1,5 +1,5 @@
 <div id = 'AddFundsContainer' *ngIf = 'submitted == false'>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit3()">
     <div class="form-group">
         <label>Sum: </label>
         <input id = 'sold' type="number" formControlName="sold" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['sold'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['sold'].errors}" />

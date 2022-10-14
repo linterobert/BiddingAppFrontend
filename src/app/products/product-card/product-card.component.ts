@@ -5,7 +5,6 @@ import { ProductServce } from 'src/app/services/product.service';
 import { Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -17,6 +16,10 @@ export class ProductCardComponent implements OnInit {
   starNumber : number = 0;
   rating! : Observable<number>;
   @Input() productCard! : getProduct;
+
+  round(number : number){
+    return Math.round(number);
+  }
 
   public countdown( x: Date ) : void{
     const product = document.getElementById(this.productCard.productId.toString());

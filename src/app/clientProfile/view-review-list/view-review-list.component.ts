@@ -11,16 +11,9 @@ import { th } from 'date-fns/locale';
   styleUrls: ['./view-review-list.component.css']
 })
 export class ViewReviewListComponent implements OnInit {
-  product_card : ProductCard = {
-    id : 1,
-    name : "Produs nou",
-    profilePhoto : 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-    starNumber : 3.45,
-    finalTime : new Date("Jan 5, 2023 15:37:25"),
-    price : 35.33
-  }  
-
+  @Input() clientId = 0;
   public lastPage : number = 0;
+
   pageNumber = 1;
   observerPage! : any;
   constructor(
@@ -31,7 +24,7 @@ export class ViewReviewListComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.clientService.getMaxPageReviews("1","1").subscribe((res:number) =>
+    this.clientService.getMaxPageReviews(this.clientId.toString(),"1").subscribe((res:number) =>
     { 
       let c = document.getElementById('reviewLastPage')
       if(c){

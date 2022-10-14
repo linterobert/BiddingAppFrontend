@@ -3,9 +3,8 @@
   <head>
   </head>
   <body>
-    <app-header id = 'menu'>
-
-    </app-header>
+    <app-header id = 'menu'></app-header>
+    <app-notifications *ngIf = 'notification' (notification) = 'notification'></app-notifications>
     <div id = 'priceFilter'>
         <p>Products filter: </p>
         <p>min: </p>
@@ -16,7 +15,7 @@
         <button><mat-icon>search</mat-icon></button>
     </div>
 
-    <app-product-card-list id = 'productList' [product_list]="products">
+    <app-product-card-list  id = 'productList' [product_list]="products">
     </app-product-card-list>
    
     <div id="pagination">

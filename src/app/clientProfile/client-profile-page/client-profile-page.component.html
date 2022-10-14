@@ -6,7 +6,9 @@
     <app-header id = 'menu'>
 
     </app-header>
-    <app-client-profile id = 'clientProfile'>
+    <div><app-notifications *ngIf = 'notification' (notification) = 'notification' [userId]="clientId" [userType]="'Client'"></app-notifications></div>
+
+    <app-client-profile id = 'clientProfile' *ngIf="(client | async) as MyClient" [clientId]="MyClient.clientProfileId">
     </app-client-profile>
    
     <app-footer></app-footer>

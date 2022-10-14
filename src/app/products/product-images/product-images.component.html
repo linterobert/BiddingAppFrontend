@@ -1,17 +1,11 @@
 <div id = 'product-image-container'>
     <div id = 'actualImage'>
-        <img id = 'resizeImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'>
+        <img id = 'resizeImage' src='{{product.images[0].url}}'>
     </div>
     <div id = 'imageList'>
 
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-        <div class = 'miniImageContainer'><img class = 'miniImage' src = 'https://images.ctfassets.net/2d5q1td6cyxq/4kmwcxuqXxUxUVfggQhbiI/650b0af104bfdf9979545eb326786243/Hero-hottoddy_.jpg'></div>
-
+        <div class = 'miniImageContainer' *ngFor = 'let image of product.images'>
+            <img class = 'miniImage' src = {{image.url}} (click)="changeImage(image.url)">
+        </div>
     </div>
 </div>

@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Product new details: </h2>
+<form [formGroup]="updateForm">
+    <div id = 'newPrice'>
+        <label>New starting price: </label>
+        <input matInput type="number" formControlName="productPrice">
+    </div>
+    <div id = 'newFinalTime'>
+        <label>Select final time: </label>
+        <input matInput type="datetime-local" formControlName="finalTime">
+    </div>
+</form>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close="flase">Cancel</button>
+    <button mat-button mat-dialog-close="{{returnObject()}}">Update</button>
+</mat-dialog-actions>

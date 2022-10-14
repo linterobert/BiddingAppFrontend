@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 
 
 export class ProductListComponent implements OnInit {
-
+  notification = false;
 
   public changeTheme() : void{
     var type = localStorage.getItem('Theme');
@@ -110,6 +110,15 @@ export class ProductListComponent implements OnInit {
           pagination.style.borderRadius = '5px';
         }
       }
+      var notifications = document.getElementsByClassName('notification')
+      for(let i = 0; i < notifications.length; i++){
+        var notification = notifications[i] as HTMLElement
+        notification.style.backgroundColor = 'darkgrey'
+      }
+      var bar = document.getElementById('notificationFooter');
+      if(bar){
+        bar.style.backgroundColor = 'darkgrey'
+      }
       localStorage.setItem('Theme', 'White')
     }
   }
@@ -164,6 +173,10 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  openNotifications(){
+    this.notification = !this.notification;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private productService : ProductServce
@@ -175,6 +188,11 @@ export class ProductListComponent implements OnInit {
 
     this.products = this.productService.getProducts();
 
+    var not = document.getElementById('openNot');
+    console.log(not);
+    if(not){
+      not.addEventListener('click', () => this.openNotifications());
+    }
     
     this.route.params.forEach(
       param => {
@@ -226,7 +244,7 @@ export class ProductListComponent implements OnInit {
     if(theme == 'Black'){
       var button = document.getElementById('check') as HTMLInputElement
       button.checked = true
-      setTimeout(() => this.setTheme(), 1)
+      setTimeout(() => this.setTheme(), 100)
     }
     
     this.setTheme();

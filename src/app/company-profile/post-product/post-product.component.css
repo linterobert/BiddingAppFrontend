@@ -1,0 +1,163 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+.image-area {
+    margin-left: 10px;
+    position: relative;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    background: white;
+    margin-top: 20px;
+  }
+  .image-area img{
+    max-width: 100px;
+    max-height: 100px;
+    border:solid;
+    border-color: black;
+  }
+  .remove-image {
+  display: none;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  border-radius: 10em;
+  padding: 2px 6px 3px;
+  text-decoration: none;
+  font: 700 21px/20px sans-serif;
+  background: #555;
+  border: 3px solid #fff;
+  color: #FFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    -webkit-transition: background 0.5s;
+    transition: background 0.5s;
+  }
+  .remove-image:hover {
+   background: #E54E4E;
+    padding: 3px 7px 5px;
+    top: -11px;
+  right: -11px;
+  }
+  .remove-image:active {
+   background: #E54E4E;
+    top: -10px;
+  right: -11px;
+  }
+  .mat-button-base {
+    margin: 8px 8px 8px 0;
+  }
+
+.col-6{
+    width: 100%;
+}
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+#AddFundsContainer{
+    justify-content: center;
+    justify-items: center;
+}
+#cardNumber{
+    width: 190px;
+}
+#cvc{
+    width: 95px;
+}
+#pin{
+    width: 95px;
+}
+#expireDate{
+    width: 155px;
+}
+#fundsRegister{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#sold{
+    width: 190px
+}
+.form-group{
+    padding-left: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+.text-danger{
+    font-size: 70%;
+}
+.text-danger div{
+    color: red;
+}
+#AddSuccess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: auto;
+}
+#AddSuccess > div{
+    margin: auto;
+    width: auto;
+    justify-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: green;
+}
+#AddFundsSuccess{
+    vertical-align: middle;
+    height: auto;
+    width: auto;
+    font-size: 200px;
+    color: green;
+    margin: auto;
+}
+#AddUnsuccess{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: auto;
+}
+#AddUnsuccess > div{
+    margin: auto;
+    width: auto;
+    justify-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: red;
+}
+#AddFundsUnsuccess{
+    vertical-align: middle;
+    height: auto;
+    width: auto;
+    font-size: 200px;
+    color: red;
+    margin: auto;
+}
+.imagesContainer{
+
+    height: 150px;
+    width: 60%;
+    background-color: white;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: scroll;
+    white-space:nowrap;
+    scrollbar-width: thin;
+    overflow-y: hidden;
+    justify-items: baseline;
+    border:solid
+}
+.imgAdd{
+    margin-top: 20px;
+    padding-left: 125px;
+}
+#expireDate{
+    width: 200px;
+}
+#fundsRegister{
+    width: 100px;
+}

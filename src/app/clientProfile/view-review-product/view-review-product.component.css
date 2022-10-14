@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.productInfo{
+    padding: auto;
+    width: 200px;
+    font-size: 15px;
+    border-style: double;
+    border-color: black;
+    height: 325px;
+}
+.cropedImage{
+    margin: auto;
+    justify-self: center;
+    margin-top: 20px;
+    margin-bottom: auto;
+    width: 100px;
+    height: 150px;
+    overflow: hidden;
+    justify-content: center;
+}
+.productImage{
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.starNumber{
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 10px;
+    padding-top: auto;
+    display: flex;
+    flex-direction: row;
+}
+.starNumber2{
+    display:inline-flex;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    border-style: double;
+    border-color: black;
+}
+.starNumber2 span{
+    margin-top: 21px;
+}
+.starNumber2 p{
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.starNumber2 mat-icon{
+    margin-left: 10px;
+    margin-top: 22px;
+    font-size: 20px;
+}
+.checked {
+    color: orange;
+}
+#productData{
+    text-align: center;
+}
+p{
+    height: 10px;
+    margin-bottom: auto;
+}
+.productReview{
+    width: 70%;
+    height: 325px;
+    border-style: double;
+    border-color: black;
+}
+.message{
+    height: 280px;
+    font-size: 15px;
+    margin-left: 10px
+    
+}
+.message > div{
+    height: 100%;
+    overflow: scroll;
+}
+.message > textarea{
+    height: 90%;
+    width: 90%;
+    overflow: scroll;
+    max-width: 99%;
+    max-height: 95%;
+}
+#reviewContainer{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    margin-left: 25px;
+}
+
+@media (max-width:500px){
+    .productInfo{
+        padding: auto;
+        width: 200px;
+        font-size: 15px;
+        border-style: double;
+        border-color: black;
+        height: 350px;
+    }
+    .productReview{
+        width: 200px;
+    }
+    .starNumber2{
+        font-size: 13px;
+        padding-left: 2px;
+    }
+    .starNumber p{
+        margin-right: 0px;
+        margin-left: 1px;
+    }
+}
+@media (max-width:1024px){
+    #reviewContainer{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin-left: 25px;
+    }
+}

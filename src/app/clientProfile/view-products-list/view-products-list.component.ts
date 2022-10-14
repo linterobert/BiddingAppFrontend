@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ClientService } from 'src/app/services/client.service';
 import { ProductCard } from 'src/interfaces/product-card';
 import { CountDownPipe } from 'src/pipes/countdown';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-view-products-list',
@@ -9,25 +12,94 @@ import { CountDownPipe } from 'src/pipes/countdown';
 })
 export class ViewProductsListComponent implements OnInit {
 
-  product_card : ProductCard = {
-    id : 1,
-    name : "Produs nou",
-    profilePhoto : 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-    starNumber : 3.45,
-    finalTime : new Date("Jan 5, 2023 15:37:25"),
-    price : 35.33
-  }  
+  @Input() clientId = 0;
+  public lastPage : number = 0;
+  pageNumber = 1;
 
-  product_list = [this.product_card, this.product_card, this.product_card]
+  redirect(productCard : any){
+    window.location.href = `http://localhost:4200/product/${productCard.productId}`
+  }
+  changePage(pageNumber : number){
+    var box = document.getElementById('reviewPage1');
+    if(pageNumber > 0){
 
-  constructor() { }
+      box = document.getElementById('reviewPage1');
+      if(box){
+        box.innerHTML = (pageNumber - 1).toString();
+        if(pageNumber == 1){
+          box.hidden = true
+        }
+        else{
+          box.hidden = false
+        }
+      }
+      box = document.getElementById('reviewPage2');
+      if(box){
+        box.innerHTML = (pageNumber).toString();
+      }
+      box = document.getElementById('reviewPage3');
+      if(box){
+        box.innerHTML = (pageNumber - (-1)).toString();
+        if(pageNumber - (-1) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+      box = document.getElementById('reviewPage4');
+      if(box){
+        box.innerHTML = (pageNumber - (-2)).toString();
+        if(pageNumber - (-2) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+      box = document.getElementById('reviewPage5');
+      if(box){
+        box.innerHTML = (pageNumber - (-3)).toString();
+        if(pageNumber - (-3) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+      box = document.getElementById('reviewPage6');
+      if(box){
+        box.innerHTML = (pageNumber - (-4)).toString();
+        if(pageNumber - (-4) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+    }
+    this.pageNumber = pageNumber;
+    this.product_list = this.clientService.getOwnProducts(this.clientId, pageNumber, 3);
+  }
+  product_list! : Observable<any>
+
+  constructor(
+    private clientService : ClientService
+  ) { }
 
   ngOnInit(): void {
+    this.clientService.getOwnProductsMaxPage(this.clientId,3).subscribe((res:number) =>
+    { 
+      let c = document.getElementById('reviewLastPage')
+      if(c){
+        c.setAttribute('id', 'reviewLastPage'.concat(res.toString()))
+        c.addEventListener('click', () => this.changePage(res));
+      }
+      this.lastPage = res;
+      this.changePage(1);
+    });
 
-    var productList = document.getElementById('productList');
-    var product = document.createElement('app-product-card')
-    productList?.append(product);
-
+    this.product_list = this.clientService.getOwnProducts(this.clientId, 1, 3);
     
   }
 

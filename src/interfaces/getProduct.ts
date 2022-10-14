@@ -6,4 +6,6 @@ export interface getProduct{
     finalTime : Date;
     companyProfileName : string;
     companyProfileId : number;
+    clientProfileId : number;
+    clientProfileName : string;
 }

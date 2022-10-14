@@ -1,0 +1,36 @@
+<div class = 'form-group' [formGroup]="registerForm">
+    <div id = 'username'>
+        <label >Username: </label>
+        <input formControlName="username">
+    </div>
+    <div id = 'password'>
+        <label>Password: </label>
+        <input  formControlName="password" />
+    </div>
+    <div id = 'iban' *ngIf="this.registerForm.value['type']=='Company'">
+        <label>IBAN: </label>
+        <input formControlName="iban">
+    </div>
+    <div id = 'accountType'>
+        <label>Select your account type: </label>
+        <select name="accountType" id="cars" formControlName="type">
+            <option value="Client">Client</option>
+            <option value="Company">Company</option>
+          </select>
+    </div>
+    <div id = 'profilePhoto'>
+        <label>Choose your profile photo: </label>
+        <div class = 'imgAdd'>
+            <input id ='addImg' type = 'file' single value = 'select' #selectFile accept="image/png, image/gif, image/jpeg"
+            (change)="onFileSelected($event)" id = 'input'>
+        </div>
+        <div style = 'position: relative;' class="image-area" *ngFor="let image of images">
+            <img [src]="image.photo" width="100px" height="100px">
+            <a class="remove-image" (click)="removeImage(image)" style="display: inline;">&#215;</a>
+        </div>
+    </div>
+</div>
+<div id = 'buttons'>
+    <button mat-flat-button color="accent">Login</button>
+    <button mat-flat-button color="accent" (click)="register()">Register</button>
+</div>

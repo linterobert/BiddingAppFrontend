@@ -1,14 +1,14 @@
 
 
     <div id = 'profileContainer'>
-        <div id = 'accountDetails'>
+        <div id = 'accountDetails' *ngIf="(clientDetails | async) as client">
             <div id = 'cropedImage'>
-                <img src = "https://image.shutterstock.com/image-photo/head-shot-portrait-close-smiling-260nw-1714666150.jpg">
+              <img *ngIf="client.profilePhotoURL != 'default'" src='{{client.profilePhotoURL}}'>
+              <img *ngIf="client.profilePhotoURL == 'default'"  src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
             </div>
             <div id = 'informations'>
-                <p>Balance:125$</p>
-                <p>Username: testuser</p>
-                <p>Name: Andrei</p>
+                <p>Balance: {{client.balance}}$</p>
+                <p>Username: {{client.clientName}}</p>
                 <button><mat-icon>exit_to_app</mat-icon><p>Log-out</p></button>
             </div>
         </div>
@@ -16,31 +16,31 @@
           <div class = 'commandsBar'(click) = "addFundsFunction()">
             <p><mat-icon>swap_vert</mat-icon>Add funds</p>
           </div>
-          <app-add-funds *ngIf="fundsComponent"></app-add-funds>
+          <app-add-funds *ngIf="fundsComponent" [clientId]="clientId"></app-add-funds>
         </div>
         <div class = "commands" id = "cashOutBar" >
           <div class = 'commandsBar'(click) = "cashOutFunction()">
             <p><mat-icon>swap_vert</mat-icon>Cash out</p>
           </div>
-          <app-cash-out *ngIf="cashOutComponent"></app-cash-out>
+          <app-cash-out *ngIf="cashOutComponent" [clientId]="clientId"></app-cash-out>
         </div>
         <div class = "commands" id = "addCardBar" >
           <div class = 'commandsBar'(click) = "addCardFunction()">
             <p><mat-icon>swap_vert</mat-icon>Add new card</p>
           </div>
-          <app-add-card *ngIf="addCardComponent"></app-add-card>
+          <app-add-card *ngIf="addCardComponent" [clientId]="clientId"></app-add-card>
         </div>
         <div class = "commands" id = "viewOwnProductsBar" >
           <div class = 'commandsBar'(click) = "viewOwnProductsFunction()">
             <p><mat-icon>swap_vert</mat-icon>View your own products</p>
           </div>
-          <app-view-own-products *ngIf="viewOwnProductsComponent"></app-view-own-products>
+          <app-view-own-products *ngIf="viewOwnProductsComponent" [clientId]="clientId"></app-view-own-products>
         </div>
         <div class = "commands" id = "viewOwnReviewsBar" >
           <div class = 'commandsBar'(click) = "viewOwnReviewsFunction()">
             <p><mat-icon>swap_vert</mat-icon>View your reviews</p>
           </div>
-          <app-view-review-list *ngIf="viewOwnReviewsComponent"></app-view-review-list>
+          <app-view-review-list *ngIf="viewOwnReviewsComponent" [clientId]="clientId"></app-view-review-list>
         </div>
         <div class = "commands"><mat-icon>swap_vert</mat-icon><p>Update your account</p></div>
     </div>

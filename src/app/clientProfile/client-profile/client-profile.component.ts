@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CountDownPipe } from 'src/pipes/countdown';
 import { ProductCard } from 'src/interfaces/product-card';
+import { ClientService } from 'src/app/services/client.service';
+import { Observable } from 'rxjs';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-client-profile',
@@ -10,42 +13,21 @@ import { ProductCard } from 'src/interfaces/product-card';
 
 
 export class ClientProfileComponent implements OnInit {
-  public countdown( x: Date ) : void{
-    const products = document.getElementsByClassName('timer');
 
-    for(let i = 0; i < products.length; i++){
-      var product = products[i] as HTMLElement;
-      var pipe = new CountDownPipe;
-      product.innerHTML = pipe.transform(x.toString());
-      var color = product.style.color;
-      if(color != "red"){
-        product.style.color = "red";
-      }
-      else{
-        product.style.color = "black";
-      }
-    }
-  }
-
+  @Input() clientId = 0;
   fundsComponent = false;
   cashOutComponent = false;
   addCardComponent = false;
   viewOwnProductsComponent = false;
   viewOwnReviewsComponent = false;
-  constructor() { }
-
-  product_card : ProductCard = {
-    id : 1,
-    name : "Produs nou",
-    profilePhoto : 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-    starNumber : 3.45,
-    finalTime : new Date("Jan 5, 2023 15:37:25"),
-    price : 35.33
-  }  
+  clientDetails! : Observable<any>
+  constructor(
+    private clientService : ClientService
+  ) { }
 
   ngOnInit(): void {
+    this.clientDetails = this.clientService.getClientByID(this.clientId.toString());
     
-    setInterval(() => this.countdown(this.product_card.finalTime),1000)
   }
   addFundsFunction(){
     if(this.fundsComponent != true){
@@ -131,6 +113,7 @@ export class ClientProfileComponent implements OnInit {
       this.fundsComponent = false;
       this.addCardComponent = false;
       this.cashOutComponent = false;
+      this.viewOwnReviewsComponent = false;
       this.viewOwnProductsComponent = true
       var addCardBar = document.getElementById('addCardBar');
       if(addCardBar){
@@ -143,6 +126,10 @@ export class ClientProfileComponent implements OnInit {
       var cashOutBar = document.getElementById('cashOutBar');
       if(cashOutBar){
         cashOutBar.style.height = '40px';
+      }
+      var viewOwnProductsBar = document.getElementById('viewOwnReviewsBar');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = '40px';
       }
       var viewOwnProductsBar = document.getElementById('viewOwnProductsBar');
       if(viewOwnProductsBar){
@@ -162,6 +149,7 @@ export class ClientProfileComponent implements OnInit {
       this.fundsComponent = false;
       this.addCardComponent = false;
       this.cashOutComponent = false;
+      this.viewOwnProductsComponent = false;
       this.viewOwnReviewsComponent = true
       var addCardBar = document.getElementById('addCardBar');
       if(addCardBar){
@@ -174,6 +162,10 @@ export class ClientProfileComponent implements OnInit {
       var cashOutBar = document.getElementById('cashOutBar');
       if(cashOutBar){
         cashOutBar.style.height = '40px';
+      }
+      var viewOwnProductsBar = document.getElementById('viewOwnProductsBar');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = '40px';
       }
       var viewOwnProductsBar = document.getElementById('viewOwnReviewsBar');
       if(viewOwnProductsBar){

@@ -6,8 +6,8 @@
         <p *ngIf="(rating | async) as starNumber; else elsep">Star number: {{starNumber}}</p>
         <ng-template #elsep><p>Star number: 0</p></ng-template>
         <div class = 'starNumber' *ngIf="(rating | async) as starNumber; else elseBlock">
-            <span class="fa fa-star checked" *ngFor = "let item of [].constructor(starNumber); let i = index"></span>
-            <span class="fa fa-star" *ngFor = "let item of [].constructor(5-starNumber); let i = index"></span>
+            <span class="fa fa-star checked" *ngFor="let item of [].constructor(round(starNumber)); let i = index"></span>
+            <span class="fa fa-star" *ngFor="let item of [].constructor(5- round(starNumber)); let i = index"></span>
         </div>
         <ng-template #elseBlock class = 'starNumber'>
             <span class="fa fa-star checked" *ngFor = "let item of [].constructor(starNumber); let i = index"></span>

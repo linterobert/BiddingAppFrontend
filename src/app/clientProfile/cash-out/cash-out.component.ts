@@ -4,6 +4,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { CreateCard } from 'src/interfaces/create-card';
 import { CashOut } from 'src/interfaces/cash-out';
 import { ClientService } from 'src/app/services/client.service';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-cash-out',
@@ -11,7 +12,7 @@ import { ClientService } from 'src/app/services/client.service';
   styleUrls: ['./cash-out.component.css']
 })
 export class CashOutComponent implements OnInit {
-
+  @Input() clientId = 0;
   registerForm! : FormGroup;
   submitted = false;
   isSuccessful! : boolean;
@@ -29,10 +30,9 @@ export class CashOutComponent implements OnInit {
       cardNumber: ['', [Validators.required, Validators.minLength(19), Validators.maxLength(19)]],
       cvc: ['', [Validators.required, Validators.min(100), Validators.max(999)]],
       pin: ['', [Validators.required, Validators.min(1000), Validators.max(9999)]],
-      expireDate: ['', Validators.required]
     })
   }
-  onSubmit(){
+  onSubmit3(){
     this.error = true;
     if(this.registerForm.invalid){
       return
@@ -44,7 +44,7 @@ export class CashOutComponent implements OnInit {
       pin : this.registerForm.value['pin']
     }
 
-    this.clientService.cashOut(card, this.registerForm.value['cardNumber'], 1).subscribe(res => {
+    this.clientService.cashOut(card, this.registerForm.value['cardNumber'], this.clientId).subscribe(res => {
       console.log("Registration successful");
       this.isSuccessful = true;
       },

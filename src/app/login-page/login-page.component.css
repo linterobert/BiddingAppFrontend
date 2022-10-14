@@ -1,0 +1,26 @@
+#pageContainer{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    background-color: darkgray;
+    display: flex;
+    flex-direction: column;
+}
+#login{
+    margin: auto;
+    margin-top: -100px;
+} 
+#logo {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    user-select: none;
+    font-size: 50px;
+    margin: auto;
+    justify-self: center;
+    margin-top: 15vh;
+}
+

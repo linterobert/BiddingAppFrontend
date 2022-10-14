@@ -8,6 +8,7 @@ import { ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateReview } from 'src/interfaces/updateReview';
+import { ProductServce } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-view-review',
@@ -16,24 +17,32 @@ import { UpdateReview } from 'src/interfaces/updateReview';
 })
 export class ViewReviewComponent implements OnInit {
   editBox = false;
-  reviews : any;
+  reviews! : Observable<any>;
+  getProduct! : Observable<any> 
   reviewTemplate! : GetClientReview;
+  @Input() clientId = 0;
   @Input() productData! : ProductCard;
   @Input() pageNumber = 0;
   @ViewChild('textArea') myTextArea!: any;
   myText! : FormControl;
   constructor(
-    private clientService : ClientService
+    private clientService : ClientService,
+    private productService : ProductServce
   ) { }
 
   ngOnInit(): void {
     this.myText = new FormControl('', Validators.required);
-    this.reviews = this.clientService.getReviews(1,this.pageNumber, 1);
+    this.reviews = this.clientService.getReviews(this.clientId,this.pageNumber, 1);
+    console.log(this.reviews.subscribe((rez: any)=> console.log(rez)));
   }
 
   ngOnChanges(change : SimpleChange){
     console.log(this.reviewTemplate)
-    this.reviews = this.clientService.getReviews(1,this.pageNumber, 1);
+    this.reviews = this.clientService.getReviews(this.clientId,this.pageNumber, 1);
+  }
+
+  repost(productId : any){
+    window.location.href = `http://localhost:4200/product/${productId}`
   }
 
   changeType(review : any): void{

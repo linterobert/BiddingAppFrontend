@@ -1,0 +1,14 @@
+<div class="form-group" [formGroup]="registerForm">
+    <div id = 'username'>
+        <label >Username: </label>
+        <input formControlName="username">
+    </div>
+    <div id = 'password'>
+        <label>Password: </label>
+        <input formControlName="password" type="password">
+    </div>
+</div>
+<div id = 'buttons'>
+    <button mat-flat-button color="white" (click)="login()">Login</button>
+    <button mat-flat-button color="white">Register</button>
+</div>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <app-header id = 'menu'>
+
+    </app-header>
+    <div><app-notifications *ngIf = 'notification && (company | async) as MyCompany' (notification) = 'notification' [userId]="MyCompany.companyProfileId" [userType]="'Company'"></app-notifications></div>
+    <app-company-profile id = 'clientProfile' *ngIf="(company | async) as MyCompany" [companyId]="MyCompany.companyProfileId">
+    </app-company-profile>
+   
+    <app-footer></app-footer>
+  </body>
+</html>

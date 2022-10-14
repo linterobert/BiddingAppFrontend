@@ -1,4 +1,14 @@
-<div class = 'product' *ngFor = "let product of product_list;">
-    <app-view-product [productCard]=product></app-view-product>
+<div class = 'product' *ngFor="let product of product_list | async">
+    <app-view-product [productCard]="product" (click)="redirect(product)"></app-view-product>
+</div>
+<div id="pagination">
+    <a (click) = 'changePage(1)'>&laquo;</a>
+    <a id = 'reviewPage1'  (click) = 'changePage(this.pageNumber -1)'></a>
+    <a class="active" id = 'reviewPage2'  (click) = 'changePage(this.pageNumber)'></a>
+    <a id = 'reviewPage3' (click) = 'changePage(this.pageNumber - (-1))'></a>
+    <a id = 'reviewPage4'  (click) = 'changePage(this.pageNumber - (-2))'></a>
+    <a id = 'reviewPage5'  (click) = 'changePage(this.pageNumber - (-3))'></a>
+    <a id = 'reviewPage6'  (click) = 'changePage(this.pageNumber - (-4))'></a>
+    <a id = 'reviewLastPage'>&raquo;</a>
 </div>
 

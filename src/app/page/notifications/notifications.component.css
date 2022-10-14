@@ -1,0 +1,80 @@
+#notificationContainer{
+    width: 250px;
+    height: auto;
+    background-color: darkgrey;
+    border: solid;
+    position:absolute;
+    margin-top: 0px;
+    z-index: 2;
+    border-width: 1px;
+    right: 5vw;
+}
+
+.notification{
+    display: flex;
+    flex-direction: row;
+    /*
+    border-style: solid;
+    border-top: 0;
+    border-width: 1px;
+    */
+    height: 60px;
+    border-bottom: solid;
+
+}
+.Success{
+    margin: auto;
+    margin-right: 2.5px;
+    margin-left: 5px;
+    width: 30px;
+    color: green;
+}
+.Cancel{
+    margin: auto;
+    margin-right: 2.5px;
+    margin-left: 5px;
+    width: 30px;
+    color: red;
+}
+.notificationText{
+    font-size: 14%;
+    display: flex;
+    width: 220px;
+    flex-direction: column;
+    word-wrap: break-word;
+    height: auto;
+    /*border-style: solid;
+    border-bottom: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    border-width: 1px;*/
+}
+.postingTime{
+    height: 10px;
+    font-size: 70%;
+}
+.text{
+    margin-top: 2px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+.notification:hover{
+    background-color: #3A3B3C;
+    color: white;
+}
+
+#notificationFooter{
+    display: flex;
+    flex-direction: row;
+    font-size: 15%;
+    justify-content: center;
+    align-items:center;
+}
+.material-icons{
+    margin: auto;
+    width: 30px;
+}
+
+#notificationFooter > mat-icon:hover{
+    color: white
+}

@@ -1,36 +1,31 @@
-<div id = 'AddFundsContainer'>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div id = 'AddFundsContainer' *ngIf = 'submitted == false'>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit2()">
     <div class="form-group">
         <label>Sum: </label>
-        <input id = 'sold' type="number" formControlName="sold" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls['sold'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['sold'].errors}" />
-        <div *ngIf="submitted && registerForm.controls['sold'].errors" class="text-danger">
+        <input id = 'sold' type="number" formControlName="sold" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['sold'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['sold'].errors}" />
+        <div *ngIf="error && registerForm.controls['sold'].errors" class="text-danger">
             <div *ngIf="registerForm.controls['sold'].errors['required']">Sum is required!</div>
             <div *ngIf="registerForm.controls['sold'].errors['min']">Sum must be higher then 0!</div>
         </div>
         <label>Card number: </label>
-        <input id = 'cardNumber' ccNumber type="text" formControlName="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls['cardNumber'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['cardNumber'].errors }" />
-        <div *ngIf="submitted && registerForm.controls['cardNumber'].errors" class="text-danger">
+        <input id = 'cardNumber' ccNumber type="card-number" formControlName="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['cardNumber'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['cardNumber'].errors }" />
+        <div *ngIf="error && registerForm.controls['cardNumber'].errors" class="text-danger">
             <div *ngIf="registerForm.controls['cardNumber'].errors['required']">Card number is required!</div>
-            <div *ngIf="registerForm.controls['cardNumber'].errors['minLength']">Invalid card number format!</div>
+            <div *ngIf="registerForm.controls['cardNumber'].errors['minlength']">Invalid card number format!</div>
         </div>
         <label>CVC: </label>
-        <input id = 'cvc' type="number" formControlName="cvc" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls['cvc'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['cvc'].errors}" />
-        <div *ngIf="submitted && registerForm.controls['cvc'].errors" class="text-danger">
+        <input id = 'cvc' type="number" formControlName="cvc" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['cvc'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['cvc'].errors}" />
+        <div *ngIf="error && registerForm.controls['cvc'].errors" class="text-danger">
             <div *ngIf="registerForm.controls['cvc'].errors['required']">CVC number is required!</div>
             <div *ngIf="registerForm.controls['cvc'].errors['min']">Invalid CVC number format!</div>
             <div *ngIf="registerForm.controls['cvc'].errors['max']">Invalid CVC number format!</div>
         </div>
         <label>Pin: </label>
-        <input id = 'pin' type="number" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls['pin'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['pin'].errors}" />
-        <div *ngIf="submitted && registerForm.controls['pin'].errors" class="text-danger">
+        <input id = 'pin' type="number" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['pin'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['pin'].errors}" />
+        <div *ngIf="error && registerForm.controls['pin'].errors" class="text-danger">
             <div *ngIf="registerForm.controls['pin'].errors['required']">Pin number is required!</div>
             <div *ngIf="registerForm.controls['pin'].errors['min']">Invalid Pin number format!</div>
             <div *ngIf="registerForm.controls['pin'].errors['max']">Invalid Pin number format!</div>
-        </div>
-        <label>Expire Date: </label>
-        <input id = 'expireDate' type="date" formControlName="expireDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls['expireDate'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['expireDate'].errors}" />
-        <div *ngIf="submitted && registerForm.controls['expireDate'].errors" class="text-danger">
-            <div *ngIf="registerForm.controls['expireDate'].errors['required']">Expire Date is required!</div>
         </div>
     </div>
     <div class="form-group">
@@ -38,5 +33,14 @@
     </div>
     </form>
 </div>
+<div class ='AddFundsContainer' id = 'AddSuccess' *ngIf = 'submitted == true && isSuccessful == true'>
+    <div>Operation performed successfully</div>
+    <mat-icon id = 'AddFundsSuccess'>check_circle_outline</mat-icon>
+</div>
+<div class ='AddFundsContainer' id = 'AddUnsuccess' *ngIf = 'submitted == true && isSuccessful == false'>
+    <div>Error!</div>
+    <mat-icon id = 'AddFundsUnsuccess'>cancel</mat-icon>
+</div>
+
 
         

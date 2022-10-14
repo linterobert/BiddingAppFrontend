@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+*{
+    font-size: 10px;
+}
+
+.starNumber{
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 15px;
+}
+.checked {
+    color: orange;
+}
+#productData{
+    text-align: center;
+    padding-top: 0px;
+}
+.textProduct p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 20px;
+}
+.textProduct div{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 20px;
+}
+.textProduct ng-template{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 20px;
+}
+.cropedImage{
+    justify-self: center;
+    margin-top: 10%;
+    width: 100px;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.productImage{
+    max-width: 100px;
+    max-height: 150px;
+}
+button{
+    margin-top: 5px;
+    height: 25px;
+    justify-content: center;
+}

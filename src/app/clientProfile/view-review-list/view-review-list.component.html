@@ -1,4 +1,4 @@
-<app-view-review [productData]=product_card [pageNumber]="pageNumber" ></app-view-review>
+<app-view-review [pageNumber]="pageNumber" [clientId]="clientId"></app-view-review>
 <div id="pagination">
     <a (click) = 'changePage(1)'>&laquo;</a>
     <a id = 'reviewPage1'  (click) = 'changePage(this.pageNumber -1)'></a>

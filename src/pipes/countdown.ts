@@ -9,6 +9,9 @@ export class CountDownPipe implements PipeTransform{
         var nowmiliseconds = now.getTime();
         var miliseconds = new Date(value).getTime();
         var time = miliseconds - nowmiliseconds;
+        if(time <= 0){
+            return "Time finished"
+        }
         var days = (time - time % 86400000) / 86400000;
         time = time % 86400000;
         var hours = (time - time % 3600000) / 3600000;

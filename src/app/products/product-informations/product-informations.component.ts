@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ClientService } from 'src/app/services/client.service';
 
 @Component({
   selector: 'app-product-informations',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductInformationsComponent implements OnInit {
 
-  constructor() { }
+  @Input() product! : any;
+  @Input() username! : any;
+  @Input() usertype! : any;
+
+  constructor(
+    private clientService : ClientService
+  ) { }
 
   ngOnInit(): void {
   }

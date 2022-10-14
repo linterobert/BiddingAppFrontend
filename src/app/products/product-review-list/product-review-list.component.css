@@ -29,11 +29,60 @@ button{
     justify-content: center;
     margin: auto;
     margin-left: 10%;
-    margin-top: 100px;
-    border-style: solid;
+    margin-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
 }
 .review{
-    border-style: solid;
+    width: 80vw;
+    height: auto;
     margin: auto;
     margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    background-color: gray;
+
+}
+.stars{
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    font-size: 75%;
+}
+.checked{
+    color : orange
+}
+.stars p{
+    margin-left: 20px;
+    margin-right: 10px;
+}
+.author{
+    font-size: 75%;
+    margin-left: 20px;
+}
+.reviewBody{
+    font-size: 75%;
+    height: auto;
+    margin-left: 50px;
+    width: 80%;
+    border-style: dashed;
+    margin-bottom: 20px;
+    padding: 25px;
+    align-items: flex-end;   
+    word-wrap: break-word; 
+
+}
+#intro{
+    margin-left: 130px;
+}
+#postStars{
+    display: flex;
+    flex-direction: row;
+
+    margin-left: 130px;
+}
+#postStars span{
+    margin-top: 35px;
+    margin-left: 6px;
 }

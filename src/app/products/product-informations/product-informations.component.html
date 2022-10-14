@@ -1,6 +1,6 @@
 <div id = 'product-informations-container'>
 
-<app-product-images></app-product-images>
-<app-product-details></app-product-details>
+<app-product-images [product]="product"></app-product-images>
+<app-product-details [product] = 'product' [username]="username" [userType]="usertype"></app-product-details>
 
 </div>
