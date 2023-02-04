@@ -1,6 +1,6 @@
-<div class = 'productContainer' id = {{productCard.productId}}>
+<div class = 'productContainer' id = {{productCard.productId}} (click)="redirect(productCard.productId)">
     <div class = 'cropedImage' >
-        <img class = 'productImage' src = "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdCUyMHBob3RvZ3JhcGh5fGVufDB8fDB8fA%3D%3D&w=1000&q=80">
+        <img class = 'productImage' *ngIf="image | async as MyImage" src="{{MyImage.images[0].url}}">
     </div>
     <div id = 'productData'>
         <p *ngIf="(rating | async) as starNumber; else elsep">Star number: {{starNumber}}</p>
@@ -13,7 +13,7 @@
             <span class="fa fa-star checked" *ngFor = "let item of [].constructor(starNumber); let i = index"></span>
             <span class="fa fa-star" *ngFor = "let item of [].constructor(5-starNumber); let i = index"></span>
         </ng-template>
-        <div class = 'timer' >{{productCard.finalTime.toString() | countdown}}</div>
+        <div class = 'timer' id="timer{{productCard.productId}}">{{productCard.finalTime.toString() | countdown}}</div>
         <p class = 'productTitle'>{{productCard.productName| titlecase}}</p>
         <p>Product ID: {{productCard.productId}}</p>
         <p class = 'actualPrice'>Actual price: {{productCard.actualPrice}}$</p>

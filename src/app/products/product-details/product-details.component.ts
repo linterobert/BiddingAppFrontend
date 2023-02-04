@@ -18,6 +18,25 @@ export class ProductDetailsComponent implements OnInit {
   @Input() username! : string;
   clientId = 0;
 
+  public countdown( x: Date ) : void{
+    const product = document.getElementById('timer');
+    if(product){
+      var pipe = new CountDownPipe;
+      product.innerHTML = "Remaining time: ".concat(pipe.transform(x.toString()));
+      var date = new Date(x.toString()).getTime();
+      var now = new Date().getTime();
+      var color = product.style.color;
+      if(date - now < 3600000 && date - now > 0 ){
+        if(color != "red"){
+          product.style.color = "red";
+        }
+        else{
+          product.style.color = "black";
+        }
+      }
+    }
+  }
+
   constructor(
     private clientService : ClientService
   ) { }
@@ -55,6 +74,7 @@ export class ProductDetailsComponent implements OnInit {
     if(this.userType == 'Client'){
       this.clientService.getClientByName(this.username).subscribe(rez => this.clientId = rez.clientProfileId);
     }
+    setInterval(()=>this.countdown(this.product.finalTime), 1000)
   }
 
 }

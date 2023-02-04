@@ -9,7 +9,7 @@
             <div id = 'informations'>
                 <p>Balance: {{company.companyBalance}}$</p>
                 <p>Company name: {{company.companyName}}</p>
-                <button><mat-icon>exit_to_app</mat-icon><p>Log-out</p></button>
+                <button mat-raised-button (click)="logout()"><mat-icon id ='logout'>exit_to_app</mat-icon><p>Log-out</p></button>
             </div>
         </div>
         <div class = "commands" id = "postNewProduct" >
@@ -24,10 +24,11 @@
           </div>
           <app-sold-products *ngIf="soldProductsComponent" [companyId]="companyId"></app-sold-products>
         </div>
-        <div class = "commands" id = "viewOwnProductsBar" >
-          <div class = 'commandsBar'>
+        <div class = "commands" id = "updateAccount" >
+          <div class = 'commandsBar' (click)="updateAccount()">
             <p><mat-icon>swap_vert</mat-icon>Update your account</p>
           </div>
+          <app-update-company *ngIf="updateAccountComponent" [companyId]="companyId"></app-update-company>
         </div>
     </div>
 

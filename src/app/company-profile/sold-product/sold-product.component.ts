@@ -77,23 +77,23 @@ export class SoldProductComponent implements OnInit {
     )
   }
   public countdown( x: Date ) : void{
-    const product = document.getElementById(this.productCard.productId.toString());
-    var pipe = new CountDownPipe;
+    const product = document.getElementById('timer'.concat(this.productCard.productId));
     if(product){
-      var timer = product.getElementsByClassName('timer');
-      for(let i = 0; i < timer.length; i++){
-          var time = timer[i] as HTMLElement;
-          time.innerHTML = pipe.transform(x.toString());
-          var color = time.style.color;
-          if(color != "red"){
-            time.style.color = "red";
-          }
-          else{
-            time.style.color = "black";
-          }
+      var pipe = new CountDownPipe;
+      product.innerHTML = pipe.transform(x.toString());
+      var date = new Date(x.toString()).getTime();
+      var now = new Date().getTime();
+      var color = product.style.color;
+      console.log(date-now);
+      if(date - now < 3600000 && date - now > 0 ){
+        if(color != "red"){
+          product.style.color = "red";
+        }
+        else{
+          product.style.color = "black";
+        }
       }
     }
-
   }
 
   

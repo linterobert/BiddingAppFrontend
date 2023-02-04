@@ -6,6 +6,9 @@ import { PostReview } from 'src/interfaces/postReview';
 import { SimpleChange } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { UpdateReview } from 'src/interfaces/updateReview';
+import { ActivatedRoute } from '@angular/router';
+import { ProductServce } from 'src/app/services/product.service';
+import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
   selector: 'app-product-review-list',
@@ -17,18 +20,13 @@ export class ProductReviewListComponent implements OnInit {
   @Input() product : any;
   @Input() usertype!: string;
   @Input() username!: string;
-  @Input() userId = 0;
+  @Input() userId = 5;
+  productID! : number
 
   myText! : FormControl
-  openBox = false
   openEdit = false
+  reviews: any;
 
-  public openBoxEdit(review:any){
-    if(this.openBox == true){
-      this.updateReview2(review)
-    }
-    this.openBox = !this.openBox
-  }
 
   checkClient(clientId : number){
     if( this.usertype == 'Client' && clientId == this.userId){
@@ -40,17 +38,6 @@ export class ProductReviewListComponent implements OnInit {
     }
   }
 
-  deleteReview(reviewID : number){
-    this.clientService.deleteReview(reviewID).subscribe(res => {
-      console.log("Registration successful");
-      },
-      err => {
-          console.error("Registration failed: " + err);
-      }
-    );
-    window.location.reload()
-    this.openBox = false
-  }
 
   updateReview2(review:any){
     review.text = this.myText.value;
@@ -77,9 +64,6 @@ export class ProductReviewListComponent implements OnInit {
       }
     );
   }
-  postAuthor(id : number){
-    return this.clientService.getClientByID(id.toString());
-  }
 
   hoverStars(idMax:number): void{
     var id = 'star1'
@@ -101,8 +85,6 @@ export class ProductReviewListComponent implements OnInit {
   }
 
   updateReview(){
-    console.log('da')
-    
     var stars = document.getElementById('postStars');
     if(stars){
       var checkedStars = stars.getElementsByClassName('fa fa-star');
@@ -114,7 +96,7 @@ export class ProductReviewListComponent implements OnInit {
         }
       }
       var updateReview : PostReview = {
-        productId : this.product.productId,
+        productId : this.productID,
         clientId : this.userId,
         text : this.myText.value,
         starNumber : count
@@ -130,12 +112,52 @@ export class ProductReviewListComponent implements OnInit {
     }
   }
   constructor(
+    private route: ActivatedRoute,
+    private productService : ProductServce,
     private clientService : ClientService,
+    private companyService : CompanyService,
     private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.myText = new FormControl('', Validators.required);
+    if(this.usertype == 'Company'){
+      this.openEdit == true;
+      this.route.params.forEach(
+        param => {
+          this.productID = param['id']
+        })
+      
+      this.product = this.productService.getProductByID(this.productID).subscribe(
+        rez => {
+          for(let review of rez.reviews){
+            if(review.clientId == this.userId){
+              this.openEdit = true;
+            }
+          }
+          this.reviews = rez.reviews
+        }
+      )
+    }
+    else{
+      this.route.params.forEach(
+        param => {
+          this.productID = param['id']
+        })
+      
+      this.product = this.productService.getProductReviews(this.productID).subscribe(
+        rez => {
+          for(let review of rez){
+            console.log(this.userId)
+            if(review.clientId == this.userId){
+              console.log('da')
+              this.openEdit = true;
+            }
+          }
+          this.reviews = rez
+        }
+      )
+    }
   }
 
   ngOnChanges(change : SimpleChange){

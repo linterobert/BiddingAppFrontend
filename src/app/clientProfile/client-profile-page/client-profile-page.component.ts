@@ -256,7 +256,7 @@ export class ClientProfilePageComponent implements OnInit {
     if(theme == 'Black'){
       var button = document.getElementById('check') as HTMLInputElement
       button.checked = true
-      setTimeout(() => this.setTheme(), 100)
+      setTimeout(() => this.setTheme(), 500)
     }
 
     var token = localStorage.getItem('token');

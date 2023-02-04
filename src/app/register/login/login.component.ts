@@ -6,6 +6,16 @@ import { Validators } from '@angular/forms';
 import { loginToken } from 'src/interfaces/loginToken';
 import { AuthToken } from 'src/interfaces/token';
 import jwt_decode from 'jwt-decode';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -13,8 +23,14 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+
+  matcher = new MyErrorStateMatcher();
 
   registerForm! : FormGroup;
+  errorComponent = false;
+  
 
   constructor(
     private loginService : LoginService,
@@ -27,6 +43,9 @@ export class LoginComponent implements OnInit {
       username: ['',Validators.required],
       password: ['', Validators.required]
     })
+  }
+  redirectRegister(){
+    window.location.href = 'http://localhost:4200/register'
   }
   login(){
     this.loginService.Login(this.registerForm.value['username'], this.registerForm.value['password']).subscribe(
@@ -47,7 +66,11 @@ export class LoginComponent implements OnInit {
             
           }
         }
+      },
+      error => {
+        this.errorComponent = true;
       }
+      
     )
   }
 }

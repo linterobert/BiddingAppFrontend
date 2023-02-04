@@ -1,34 +1,36 @@
 <div id = 'AddFundsContainer' *ngIf = 'submitted == false'>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label>Card number: </label>
-        <input id = 'cardNumber' ccNumber type="card-number" formControlName="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['cardNumber'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['cardNumber'].errors }" />
-        <div *ngIf="error && registerForm.controls['cardNumber'].errors" class="text-danger">
-            <div *ngIf="registerForm.controls['cardNumber'].errors['required']">Card number is required!</div>
-            <div *ngIf="registerForm.controls['cardNumber'].errors['minlength']">Invalid card number format!</div>
-        </div>
-        <label>CVC: </label>
-        <input id = 'cvc' type="number" formControlName="cvc" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['cvc'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['cvc'].errors}" />
-        <div *ngIf="error && registerForm.controls['cvc'].errors" class="text-danger">
-            <div *ngIf="registerForm.controls['cvc'].errors['required']">CVC number is required!</div>
-            <div *ngIf="registerForm.controls['cvc'].errors['min']">Invalid CVC number format!</div>
-            <div *ngIf="registerForm.controls['cvc'].errors['max']">Invalid CVC number format!</div>
-        </div>
-        <label>Pin: </label>
-        <input id = 'pin' type="number" formControlName="pin" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['pin'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['pin'].errors}" />
-        <div *ngIf="error && registerForm.controls['pin'].errors" class="text-danger">
-            <div *ngIf="registerForm.controls['pin'].errors['required']">Pin number is required!</div>
-            <div *ngIf="registerForm.controls['pin'].errors['min']">Invalid Pin number format!</div>
-            <div *ngIf="registerForm.controls['pin'].errors['max']">Invalid Pin number format!</div>
-        </div>
-        <label>Expire Date: </label>
-        <input id = 'expireDate' type="date" formControlName="expireDate" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['expireDate'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['expireDate'].errors}" />
-        <div *ngIf="submitted && registerForm.controls['expireDate'].errors" class="text-danger">
-            <div *ngIf="registerForm.controls['expireDate'].errors['required']">Expire Date is required!</div>
-        </div>
+        <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+            <mat-label>Card number: </mat-label>
+            <input matInput id = 'cardNumber' ccNumber type="card-number" formControlName="cardNumber" class="form-control" [errorStateMatcher]="matcher" placeholder="Card number:" />
+            <mat-error *ngIf="registerForm.controls['cardNumber'].hasError('required')">Card number is required!</mat-error>
+            <mat-error *ngIf="registerForm.controls['cardNumber'].hasError('minlength')">Invalid card number format!</mat-error>
+            
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+            <mat-label>CVC: </mat-label>
+            <input matInput id = 'cvc' type="number" formControlName="cvc" class="form-control" [errorStateMatcher]="matcher" placeholder="CVC:" />
+            <mat-error *ngIf="registerForm.controls['cvc'].hasError('required')">CVC number is required!</mat-error>
+            <mat-error *ngIf="registerForm.controls['cvc'].hasError('min')">Invalid CVC number format!</mat-error>
+            <mat-error *ngIf="registerForm.controls['cvc'].hasError('max')">Invalid CVC number format!</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+            <mat-label>Pin: </mat-label>
+            <input matInput id = 'pin' type="number" formControlName="pin" class="form-control" [errorStateMatcher]="matcher" placeholder="Pin:" >
+            <mat-error *ngIf="registerForm.controls['pin'].hasError('required')">Pin number is required!</mat-error>
+            <mat-error *ngIf="registerForm.controls['pin'].hasError('min')">Invalid Pin number format!</mat-error>
+            <mat-error *ngIf="registerForm.controls['pin'].hasError('max')">Invalid Pin number format!</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+            <mat-label>Expire Date: </mat-label>
+            <input matInput id = 'expireDate' [min]="date" formControlName="expireDate" class="form-control" [matDatepicker]="picker" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
     </div>
     <div class="form-group">
-        <button id = 'fundsRegister' class="btn btn-primary">Register</button>
+        <button mat-raised-button id = 'fundsRegister' color="black">Add card</button>
     </div>
     </form>
 </div>

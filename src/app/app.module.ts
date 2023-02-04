@@ -55,6 +55,18 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import {MatDialog, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { RepostProductComponent } from './company-profile/repost-product/repost-product.component';
 import {MatTableModule} from "@angular/material/table";
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { UpdateCompanyComponent } from './company-profile/update-company/update-company.component';
+import { UpdateClientComponent } from './clientProfile/update-client/update-client.component';
+import { ViewCardsComponent } from './clientProfile/view-cards/view-cards.component';
+import { ProductReviewComponent } from './products/product-review/product-review.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import { ClientAuthGuard } from './guards/client-auth.guard';
+import { ClientAuthService } from './services/client-auth.service';
+import { CompanyAuthGuard } from './guards/company-auth.guard';
+import { CompanyAuthService } from './services/company-auth.service';
 
 @NgModule({
   declarations: [
@@ -91,7 +103,11 @@ import {MatTableModule} from "@angular/material/table";
     LoginComponent,
     RegisterComponent,
     LoginPageComponent,
-    RepostProductComponent
+    RepostProductComponent,
+    UpdateCompanyComponent,
+    UpdateClientComponent,
+    ViewCardsComponent,
+    ProductReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +142,10 @@ import {MatTableModule} from "@angular/material/table";
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   entryComponents: [RepostProductComponent, CompanyProfileComponent],
   exports: [
@@ -134,7 +153,13 @@ import {MatTableModule} from "@angular/material/table";
     MatIconModule
   ],
   providers: [
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    AuthGuard,
+    AuthService,
+    ClientAuthGuard,
+    ClientAuthService,
+    CompanyAuthGuard,
+    CompanyAuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -3,14 +3,14 @@
         <mat-icon *ngIf="notification.good" class = 'Success'>check_circle_outline</mat-icon>
         <mat-icon *ngIf="!notification.good" class = 'Cancel'>cancel</mat-icon>
         <div class = 'notificationText'>
-            <div class = 'postingTime'>{{notification.created}}</div>
+            <div class = 'postingTime'>{{notification.created | date:"dd/MM/yyyy HH:mm"}}</div>
             <div class = 'text'>{{notification.text}}</div>
         </div>
         <span class="material-icons" (click)="deleteNotification(notification.id)">delete</span>
     </div>
     <div id = 'notificationFooter'>
-        <mat-icon *ngIf="pageNumber != 1" (click)="changePage('-')">keyboard_arrow_left</mat-icon>
-        {{pageNumber}}/{{max}}
-        <mat-icon *ngIf="pageNumber != max" (click)="changePage('+')">keyboard_arrow_right</mat-icon>
+        <div id="left"><mat-icon *ngIf="pageNumber != 1" (click)="changePage('-')">keyboard_arrow_left</mat-icon></div>
+        <div id="center">{{pageNumber}}/{{max}}</div>
+        <div id="rigth"><mat-icon *ngIf="pageNumber != max" (click)="changePage('+')">keyboard_arrow_right</mat-icon></div>
     </div>
 </div>

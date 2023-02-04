@@ -8,6 +8,10 @@ import { HttpClient } from "@angular/common/http";
 export class CompanyService{
     constructor(private httpClient : HttpClient){}
 
+    updateCompany(company : any, companyId : number){
+        return this.httpClient.put<any>(`https://localhost:7045/api/CompanyProfile/${companyId}`, company)
+    }
+
     getCompanyByName(name : string){
         return this.httpClient.get<any>(`https://localhost:7045/api/CompanyProfile/name/${name}`)
     }

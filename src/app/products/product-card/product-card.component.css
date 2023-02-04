@@ -4,22 +4,23 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .cropedImage{
-    justify-self: center;
+    margin: auto;
     margin-top: 10%;
-    margin-bottom: auto;
-    width: 15vw;
-    height: 40vh;
-    min-height: 50%;
-    min-width: 125px;
+    width: 150px;
+    height: 250px;
     overflow: hidden;
-    justify-content: center;
+    position: relative;
 }
 .productImage{
-    width: 100%;
-    height: auto;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
     margin: auto;
+    max-width: 150px;
+    max-height: 250px;
 }
-
 .starNumber{
     text-align: center;
     justify-content: center;

@@ -1,0 +1,14 @@
+.card{
+    margin-left: 40px;
+    border-style: solid;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 50vw;
+    font-size: 80%;
+}
+@media (max-width:1024px){
+    .card{ 
+        margin-left: 10px;
+        width: 60vw;
+    }
+}

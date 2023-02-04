@@ -86,3 +86,52 @@ button{
     margin-top: 35px;
     margin-left: 6px;
 }
+@media (max-width:1024px){
+    #writeRew{
+        width: 80vw;
+        height: 80vw;
+        max-width: 80vw;
+        max-height: 80vw;
+        min-width: 80vw;
+        min-height: 80vw;
+    }
+    #postReview{
+        margin: auto;
+        margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+    #postStars{
+        display: flex;
+        flex-direction: row;
+    
+        margin-left: 30px;
+    }
+    #intro{
+        margin-left: 30px;
+    }
+    button{
+        margin-top: 20px;
+    }
+    .review{
+        width: 90vw;
+        height: auto;
+        margin: auto;
+        margin-left: -15px;
+        margin-right: 50px;
+        margin-bottom: 50px;
+        background-color: gray;
+    
+    }
+    #reviews{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+        margin-left: 10%;
+        width: 90%;
+        margin-top: 50px;
+        padding-bottom: 50px;
+        margin-bottom: 50px;
+    }
+}

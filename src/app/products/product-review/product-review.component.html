@@ -1,0 +1,29 @@
+<div class = 'stars' *ngIf="!openBox || !checkClient2(review.clientId)">
+    <div>
+    <p>Stars number: </p>
+    <span class="fa fa-star checked" id = 'star{{i+1}}' *ngFor = "let item of [].constructor(review.starNumber); let i = index"></span>
+    <span class="fa fa-star" id = 'star{{review.starNumber + i + 1}}' *ngFor="let item of [].constructor(5-review.starNumber); let i = index"></span>
+    </div>
+    <div>
+    <p>Posting time: {{review.postTime | date:"dd/MM/yyyy HH:mm"}}</p>
+    </div>
+    <div>
+    <mat-icon  *ngIf="checkClient(review.clientId)" (click)="openBoxEdit(review)">edit</mat-icon>
+    <mat-icon *ngIf="checkClient(review.clientId)" (click)="deleteReview(review.reviewID)">delete</mat-icon>
+    </div>
+</div>
+<div class = 'stars' *ngIf="openBox && checkClient(review.clientId)">
+    <p>Star number: </p>
+    <span class="fa fa-star 2" id = 'star11' (mouseover)='hoverStars(1)'></span>
+    <span class="fa fa-star 2" id = 'star12' (mouseover)='hoverStars(2)'></span>
+    <span class="fa fa-star 2" id = 'star13' (mouseover)='hoverStars(3)'></span>
+    <span class="fa fa-star 2" id = 'star14' (mouseover)='hoverStars(4)'></span>
+    <span class="fa fa-star 2" id = 'star15' (mouseover)='hoverStars(5)'></span>
+    <p>Posting time: {{review.postTime | date:"dd/MM/yyyy HH:mm"}}</p>
+    <mat-icon *ngIf="checkClient(review.clientId)" (click)="openBoxEdit(review)">save_alt</mat-icon>
+</div>
+<p class = 'author' *ngIf="client | async as myClient">Author: {{myClient.clientName}}</p>
+<div class = 'reviewBody'>
+    <div *ngIf="!openBox || !checkClient(review.clientId)">{{review.text}}</div>
+    <textarea #textArea  [formControl] = "myText" id = 'textUpdate' *ngIf="openBox && checkClient(review.clientId)"></textarea>
+</div>

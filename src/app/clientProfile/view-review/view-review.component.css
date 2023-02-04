@@ -44,6 +44,11 @@
     border-style: double;
     border-color: black;
 }
+.starNumber2 div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
 .starNumber2 span{
     margin-top: 21px;
 }
@@ -123,5 +128,14 @@ p{
         flex-direction: column;
         height: auto;
         margin-left: 25px;
+    }
+    .starNumber2{
+        display:inline-flex;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        border-style: double;
+        border-color: black;
     }
 }

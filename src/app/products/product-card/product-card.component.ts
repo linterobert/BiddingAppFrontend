@@ -15,30 +15,35 @@ import { Observable } from 'rxjs';
 export class ProductCardComponent implements OnInit {
   starNumber : number = 0;
   rating! : Observable<number>;
+  image! : Observable<any>;
   @Input() productCard! : getProduct;
+
+  redirect(productId : number){
+    window.location.href = `http://localhost:4200/product/${productId}`
+  }
 
   round(number : number){
     return Math.round(number);
   }
 
   public countdown( x: Date ) : void{
-    const product = document.getElementById(this.productCard.productId.toString());
-    var pipe = new CountDownPipe;
+    const product = document.getElementById('timer'.concat(this.productCard.productId.toString()));
     if(product){
-      var timer = product.getElementsByClassName('timer');
-      for(let i = 0; i < timer.length; i++){
-          var time = timer[i] as HTMLElement;
-          time.innerHTML = pipe.transform(x.toString());
-          var color = time.style.color;
-          if(color != "red"){
-            time.style.color = "red";
-          }
-          else{
-            time.style.color = "black";
-          }
+      var pipe = new CountDownPipe;
+      product.innerHTML = pipe.transform(x.toString());
+      var date = new Date(x.toString()).getTime();
+      var now = new Date().getTime();
+      var color = product.style.color;
+      console.log(date-now);
+      if(date - now < 3600000 && date - now > 0 ){
+        if(color != "red"){
+          product.style.color = "red";
+        }
+        else{
+          product.style.color = "black";
+        }
       }
     }
-
   }
   constructor(
     private productService : ProductServce
@@ -48,6 +53,7 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.rating = this.productService.getProductRating(this.productCard.productId.toString());
+    this.image = this.productService.getProductByID(this.productCard.productId)
     setInterval(() => this.countdown(new Date(this.productCard.finalTime)),1000)
     var product = document.getElementById(this.productCard.companyProfileId.toString());
     if(product){

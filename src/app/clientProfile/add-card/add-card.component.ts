@@ -3,6 +3,15 @@ import {FormControl, FormGroup, NgForm, Validators, FormBuilder} from '@angular/
 import {ErrorStateMatcher} from '@angular/material/core';
 import { CreateCard } from 'src/interfaces/create-card';
 import { ClientService } from 'src/app/services/client.service';
+import {FormGroupDirective} from '@angular/forms';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
+
 
 @Component({
   selector: 'app-add-card',
@@ -14,6 +23,8 @@ export class AddCardComponent implements OnInit {
   registerForm! : FormGroup;
   submitted = false;
   error = false
+  matcher = new MyErrorStateMatcher();
+  date = new Date()
   constructor(
     private formBuilder : FormBuilder,
     private clientServie : ClientService

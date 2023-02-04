@@ -13,17 +13,23 @@
 }
 .cropedImage{
     margin: auto;
-    justify-self: center;
     margin-top: 20px;
     margin-bottom: auto;
     width: 100px;
     height: 150px;
     overflow: hidden;
-    justify-content: center;
+    position: relative;
 }
 .productImage{
     width: 100%;
     height: auto;
+    margin: auto;
+    position: relative;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
     margin: auto;
 }
 

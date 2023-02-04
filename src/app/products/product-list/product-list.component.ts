@@ -4,6 +4,10 @@ import { ProductServce } from 'src/app/services/product.service';
 import { getProduct } from 'src/interfaces/getProduct';
 import { map, of } from 'rxjs';
 import { Observable } from 'rxjs';
+import { AuthToken } from 'src/interfaces/token';
+import jwt_decode from 'jwt-decode';
+import { ClientService } from 'src/app/services/client.service';
+import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,6 +18,10 @@ import { Observable } from 'rxjs';
 
 export class ProductListComponent implements OnInit {
   notification = false;
+  lastPage = 0;
+  userName!: any;
+  userType!: any;
+  userId!: any;
 
   public changeTheme() : void{
     var type = localStorage.getItem('Theme');
@@ -177,16 +185,83 @@ export class ProductListComponent implements OnInit {
     this.notification = !this.notification;
   }
 
+  changePage(pageNumber : number, type : boolean){
+    if(type == false){
+      document.location.href = `http://localhost:4200/products/${pageNumber}`
+    }
+    var box = document.getElementById('page1');
+    if(pageNumber > 0){
+
+      box = document.getElementById('page1');
+      if(box){
+        box.innerHTML = (pageNumber - 1).toString();
+        if(pageNumber == 1){
+          box.hidden = true
+        }
+        else{
+          box.hidden = false
+        }
+      }
+      box = document.getElementById('page2');
+      if(box){
+        box.innerHTML = (pageNumber).toString();
+      }
+      box = document.getElementById('page3');
+      if(box){
+        box.innerHTML = (pageNumber - (-1)).toString();
+        if(pageNumber - (-1) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+      box = document.getElementById('page4');
+      if(box){
+        box.innerHTML = (pageNumber - (-2)).toString();
+        if(pageNumber - (-2) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+      box = document.getElementById('page5');
+      if(box){
+        box.innerHTML = (pageNumber - (-3)).toString();
+        if(pageNumber - (-3) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+      box = document.getElementById('page6');
+      if(box){
+        box.innerHTML = (pageNumber - (-4)).toString();
+        if(pageNumber - (-4) <= this.lastPage){
+          box.hidden = false
+        }
+        else{
+          box.hidden = true;
+        }
+      }
+    }
+    this.pageNumber = pageNumber;
+    this.products = this.productService.getProductByPage(this.pageNumber,9)
+  }
   constructor(
     private route: ActivatedRoute,
-    private productService : ProductServce
+    private productService : ProductServce,
+    private clientService : ClientService,
+    private companyService : CompanyService
   ) { }
   pageNumber : number = 0;
   index : number = 0;
   products! : Observable<getProduct[]>;
   ngOnInit(): void {
 
-    this.products = this.productService.getProducts();
+
 
     var not = document.getElementById('openNot');
     console.log(not);
@@ -196,46 +271,19 @@ export class ProductListComponent implements OnInit {
     
     this.route.params.forEach(
       param => {
-        this.pageNumber = param['id']
-        this.index = param['index']
+        this.pageNumber = param['pageNumber']
       })
-    var pagination = document.getElementById('pagination')
-    var box
-    if(this.pageNumber > 0){
-      box = document.getElementById('page1');
-      if(box){
-        box.innerHTML = (this.pageNumber - 1).toString();
-        box.setAttribute('href', '#');
-      }
-      box = document.getElementById('page2');
-      if(box){
-        box.innerHTML = (this.pageNumber).toString();
-        box.setAttribute('href', '#');
-      }
-      box = document.getElementById('page3');
-      if(box){
-        box.innerHTML = (this.pageNumber - (-1)).toString();
-        box.setAttribute('href', '#');
-      }
-      box = document.getElementById('page4');
-      if(box){
-        box.innerHTML = (this.pageNumber - (-2)).toString();
-        box.setAttribute('href', '#');
-      }
-      box = document.getElementById('page5');
-      if(box){
-        box.innerHTML = (this.pageNumber - (-3)).toString();
-        box.setAttribute('href', '#');
-      }
-      box = document.getElementById('page6');
-      if(box){
-        box.innerHTML = (this.pageNumber - (-4)).toString();
-        box.setAttribute('href', '#');
-      }
-      if(this.pageNumber == 1){
-        document.getElementById('page1')?.remove();
-      }
-    }
+
+    this.productService.getProductsMaxPage(9).subscribe((res:number) =>
+      { 
+        let c = document.getElementById('productLastPage')
+        if(c){
+          c.setAttribute('id', 'reviewLastPage'.concat(res.toString()))
+          c.addEventListener('click', () => this.changePage(res, false));
+        }
+        this.lastPage = res;
+        this.changePage(this.pageNumber, true);
+      });
 
 
 
@@ -246,8 +294,23 @@ export class ProductListComponent implements OnInit {
       button.checked = true
       setTimeout(() => this.setTheme(), 100)
     }
-    
-    this.setTheme();
+    var token = localStorage.getItem('token');
+    if(token != null){
+      if(token != ""){
+
+        var decode = jwt_decode<AuthToken>(token.toString())
+        
+        this.userType = decode["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+        this.userName = decode["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+      }
+    }
+    if(this.userType == 'Client'){
+      this.clientService.getClientByName(this.userName).subscribe(rez => this.userId = rez.clientProfileId)
+    }
+    if(this.userType == 'Company'){
+      this.companyService.getCompanyByName(this.userName).subscribe(rez => this.userId = rez.companyProfileId)
+    }
+    setTimeout(() => this.setTheme(),500);
   }
 
 }

@@ -1,4 +1,3 @@
-@import "~bootstrap/dist/css/bootstrap.css";
 
 #AddFundsContainer{
     justify-content: center;
@@ -19,12 +18,15 @@
 #fundsRegister{
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 100px;
 }
 #sold{
     width: 190px
 }
 .form-group{
     padding-left: 10vw;
+    display: flex;
+    flex-direction: column;
 }
 .text-danger{
     font-size: 70%;
@@ -75,4 +77,13 @@
     font-size: 200px;
     color: red;
     margin: auto;
+}
+.example-full-width {
+    margin-top: 20px;
+    width: 40%;
+}
+@media (max-width:1024px){
+    .example-full-width{
+        width: 80%;
+    }
 }

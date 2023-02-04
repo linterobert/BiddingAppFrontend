@@ -18,12 +18,12 @@
             <p class = 'rating' *ngIf="!(rating | async) as starNumber">Rating: 0</p>
             <p class = 'productTitle'>{{productCard.productName | titlecase}}</p>
             <p class = 'productName'>ProductID: {{productCard.productId}}</p>
-            <div class = 'timer'>{{productCard.finalTime | countdown}}</div>
+            <div class = 'timer' id="timer{{productCard.productId}}">{{productCard.finalTime | countdown}}</div>
             <p class = 'actualPrice'>Actual price: {{productCard.actualPrice}}$</p>
             <p class = 'owner' *ngIf="productCard.clientProfileName != null">Owner: {{productCard.clientProfileName}}</p>
             <p class = 'owner' *ngIf="productCard.clientProfileName == null">Owner: none</p>
             <button class = 'cashOut' *ngIf="!productCard.cashOut && cashOut" (click)="cashOutProduct()">Cash out</button>
-            <button mat-raised-button class = 'repost' *ngIf="repost" (click)="openDialog()">Repost</button>
+            <button class = 'repost' *ngIf="repost" (click)="openDialog()">Repost</button>
         </div>
     </div>
 </div>

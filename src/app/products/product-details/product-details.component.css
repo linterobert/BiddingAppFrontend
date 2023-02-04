@@ -20,14 +20,35 @@ P{
     display: flex;
     flex-direction: row;
 }
+
 #company-profile-image{
-    margin-right: 0px;
+    margin-right: 10px;
     width: 200px;
     height: 200px;
-    border-style: solid;
+    overflow: hidden;
+    position: relative;
 }
 #company-profile-image > img{
-    margin-right: 0px;
-    max-width: 200px;
-    max-height: 200px;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    width: auto;
+    height: 100%;
+}
+@media (max-width:1024px){
+    .example-full-width{
+        width: 80%;
+    }
+    #product-details-container{
+        margin-left: 0px;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        margin-left: 80px;
+        margin-bottom: 20px;
+    }
 }

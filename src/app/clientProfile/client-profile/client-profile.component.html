@@ -7,9 +7,9 @@
               <img *ngIf="client.profilePhotoURL == 'default'"  src = "https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
             </div>
             <div id = 'informations'>
-                <p>Balance: {{client.balance}}$</p>
+                <p>Balance: {{round(client.balance)}}$</p>
                 <p>Username: {{client.clientName}}</p>
-                <button><mat-icon>exit_to_app</mat-icon><p>Log-out</p></button>
+                <button mat-raised-button (click)="logout()"><mat-icon id ='logout'>exit_to_app</mat-icon><p>Log-out</p></button>
             </div>
         </div>
         <div class = "commands" id = "addFundsBar" >
@@ -30,6 +30,12 @@
           </div>
           <app-add-card *ngIf="addCardComponent" [clientId]="clientId"></app-add-card>
         </div>
+        <div class = "commands" id = "viewCardsBar" >
+          <div class = 'commandsBar'(click) = "viewCardsFunction()">
+            <p><mat-icon>swap_vert</mat-icon>View your cards</p>
+          </div>
+          <app-view-cards *ngIf="viewCardsComponent" [clientId]="clientId"></app-view-cards>
+        </div>
         <div class = "commands" id = "viewOwnProductsBar" >
           <div class = 'commandsBar'(click) = "viewOwnProductsFunction()">
             <p><mat-icon>swap_vert</mat-icon>View your own products</p>
@@ -42,6 +48,11 @@
           </div>
           <app-view-review-list *ngIf="viewOwnReviewsComponent" [clientId]="clientId"></app-view-review-list>
         </div>
-        <div class = "commands"><mat-icon>swap_vert</mat-icon><p>Update your account</p></div>
+        <div class = "commands" id = "changeProfileImage" >
+          <div class = 'commandsBar'(click) = "updateClientFunction()">
+            <p><mat-icon>swap_vert</mat-icon>Change profile image</p>
+          </div>
+          <app-update-client *ngIf="changeImageComponent" [clientId]="clientId"></app-update-client>
+        </div>
     </div>
 

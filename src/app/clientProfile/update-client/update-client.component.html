@@ -1,0 +1,16 @@
+<div id="updateContainer">
+    <div id = 'profilePhoto'>
+        <label>New profile photo: </label>
+        <div class = 'imgAdd'>
+            <input id ='addImg' type = 'file' single value = 'select' #selectFile accept="image/png, image/gif, image/jpeg"
+            (change)="onFileSelected($event)" id = 'input'>
+        </div>
+        <div style = 'position: relative;' class="image-area" *ngFor="let image of images">
+            <img [src]="image.photo" width="100px" height="100px">
+            <a class="remove-image" (click)="removeImage(image)" style="display: inline;">&#215;</a>
+        </div>
+    </div>
+    <div class="form-group">
+        <button id = 'fundsRegister' class="btn btn-primary" mat-raised-button color="white" (click)="onSubmit()">Post </button>
+    </div>
+</div>

@@ -15,8 +15,8 @@ import { ClientService } from 'src/app/services/client.service';
 export class ProductComponent implements OnInit {
 
   userName! : string
-  userType! : string;
-  userId = 0;
+  userType = "";
+  userId = 5;
   productID = 0;
   product! : Observable<any>;
   productToReturn! : any;
@@ -294,15 +294,16 @@ export class ProductComponent implements OnInit {
       var button = document.getElementById('check') as HTMLInputElement
       button.checked = true
     }
-    setTimeout(() => this.setTheme(),100);
 
     var token = localStorage.getItem('token');
     if(token != null){
+      if(token != ""){
 
-      var decode = jwt_decode<AuthToken>(token.toString())
-      
-      this.userType = decode["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
-      this.userName = decode["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+        var decode = jwt_decode<AuthToken>(token.toString())
+        
+        this.userType = decode["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
+        this.userName = decode["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+      }
     }
     if(this.userType == 'Client'){
       this.clientService.getClientByName(this.userName).subscribe(rez => this.userId = rez.clientProfileId)
@@ -310,6 +311,7 @@ export class ProductComponent implements OnInit {
     if(this.userType == 'Company'){
       this.companyService.getCompanyByName(this.userName).subscribe(rez => this.userId = rez.companyProfileId)
     }
+    setTimeout(() => this.setTheme(),500);
   }
 
 }

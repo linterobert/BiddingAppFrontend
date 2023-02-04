@@ -16,7 +16,7 @@
             <p class = 'rating' *ngIf="(rating | async) as starNumber">Rating: {{starNumber}}</p>
             <p class = 'rating' *ngIf="!(rating | async) as starNumber">Rating: 0</p>
             <p class = 'productTitle'>{{Product.productName | titlecase}}</p>
-            <p class = 'timer'>Final time: {{Product.finalTime.toString() | countdown}}</p>
+            <p class = 'timer' id="timer{{productID}}">Final time: {{Product.finalTime.toString() | countdown}}</p>
             <p class = 'actualPrice'>Actual Price: {{Product.actualPrice}}$</p>
         </div>
     </div>

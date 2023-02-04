@@ -11,6 +11,17 @@ import { ClientService } from 'src/app/services/client.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { PostClient } from 'src/interfaces/postClient';
 import { PostCompany } from 'src/interfaces/postCompany';
+import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -28,6 +39,7 @@ export class RegisterComponent implements OnInit {
   error = false;
   @ViewChild('accountType') accountType!: ElementRef
   type = ""
+  matcher = new MyErrorStateMatcher();
 
   constructor(
     private af: AngularFireStorage,
@@ -71,7 +83,7 @@ export class RegisterComponent implements OnInit {
                 clientName: this.registerForm.value['username'],
                 profilePhoto: urlToReturn
               }
-              this.clientService.postClient(postClient).subscribe(rez => console.log(rez));
+              this.clientService.postClient(postClient).subscribe(rez => window.location.href = "http://localhost:4200/login");
             }
             else{
               var postCompany : PostCompany = {
@@ -79,12 +91,15 @@ export class RegisterComponent implements OnInit {
                 iban: this.registerForm.value['iban'],
                 profilePhoto: urlToReturn
               }
-              this.companyService.postCompany(postCompany).subscribe(rez => console.log(rez));
+              this.companyService.postCompany(postCompany).subscribe(rez => window.location.href = "http://localhost:4200/login");
             }
           })})
         
       })
     })
+  }
+  login(){
+    window.location.href='http://localhost:4200/login'
   }
 
   ngOnInit(): void {

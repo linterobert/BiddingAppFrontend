@@ -6,7 +6,7 @@
         <p>Company: {{product.companyProfile.companyName}}</p>
         <p>Actual owner: {{product.clientProfile? product.clientProfile.clientName : '-'}}</p>
         <p>Final time: {{product.finalTime | date: 'dd/MM/yyyy hh:mm:ss'}}</p>
-        <p>Remaining time: {{product.finalTime | countdown}}</p>
+        <p id="timer">Remaining time: {{product.finalTime | countdown}}</p>
 
         <div id = 'makeOffer' *ngIf="(userType == 'Client')  && (!product.clientProfile || product.clientProfile.clientName != username)">
             <input type = 'number' [formControl] = "myOffer">

@@ -4,7 +4,14 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { CreateCard } from 'src/interfaces/create-card';
 import { CashOut } from 'src/interfaces/cash-out';
 import { ClientService } from 'src/app/services/client.service';
+import {FormGroupDirective} from '@angular/forms';
 
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 @Component({
   selector: 'app-add-funds',
   templateUrl: './add-funds.component.html',
@@ -19,6 +26,7 @@ export class AddFundsComponent{
   submitted = false;
   isSuccessful! : boolean;
   error = false;
+  matcher = new MyErrorStateMatcher();
   constructor(
     private formBuilder : FormBuilder,
     private clientService : ClientService

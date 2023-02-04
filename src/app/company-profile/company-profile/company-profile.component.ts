@@ -13,6 +13,7 @@ export class CompanyProfileComponent implements OnInit {
 
   soldProductsComponent = false
   createProductComponent = false
+  updateAccountComponent = false
   companyDetails! : Observable<any>
 
   constructor(
@@ -282,6 +283,32 @@ export class CompanyProfileComponent implements OnInit {
       }
     }
   }
+  updateAccount(){
+    if(this.updateAccountComponent != true){
+      this.soldProductsComponent = false;
+      this.updateAccountComponent = true;
+      var fundsBar = document.getElementById('soldProductsBar');
+      if(fundsBar){
+        fundsBar.style.height = '40px';
+      }
+      var fundsBar = document.getElementById('updateAccount');
+      if(fundsBar){
+        fundsBar.style.height = 'auto';
+      }
+    }
+    else{
+      this.updateAccountComponent = false;
+      var fundsBar = document.getElementById('updateAccount');
+      if(fundsBar){
+        fundsBar.style.height = '40px';
+      }
+    }
+  }
+  logout(){
+    localStorage.setItem('token', '')
+    localStorage.setItem('expiration', '')
+    window.location.href = 'http://localhost:4200/login'
+  }
 
   ngOnInit(): void {
     this.companyDetails = this.companyServie.getCompanyById(this.companyId);
@@ -290,7 +317,7 @@ export class CompanyProfileComponent implements OnInit {
     if(theme == 'Black'){
       var button = document.getElementById('check') as HTMLInputElement
       button.checked = true
-      setTimeout(() => this.setTheme(), 100)
+      setTimeout(() => this.setTheme(), 500)
     }
   }
 

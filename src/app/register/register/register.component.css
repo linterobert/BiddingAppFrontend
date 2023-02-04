@@ -1,6 +1,7 @@
-.forg-group{
+.form-group{
     display: flex;
     flex-direction: column;
+    padding-top: 50px;
 }
 #username{
     margin-top: 100px;
@@ -102,3 +103,9 @@
     justify-items: baseline;
     border:solid
 }
+
+.example-full-width {
+  margin-top: 20px;
+  width: 100%;
+}
+

@@ -11,6 +11,10 @@ import { PostProductImage } from "src/interfaces/post-product-image";
 export class ProductServce{
     constructor(private httpClient : HttpClient){}
 
+    getProductReviews(productId : number){
+        return this.httpClient.get<any>(`https://localhost:7045/api/Product/${productId}/reviews`)
+    }
+
     updateProduct(product : any, productId : number){
         return this.httpClient.put<any>(`https://localhost:7045/api/Product/${productId}`, product)
     }
@@ -29,5 +33,11 @@ export class ProductServce{
     }
     postProduct(product : any){
         return this.httpClient.post<any>(`https://localhost:7045/api/Product`, product)
+    }
+    getProductByPage(pageNumber : number, pageSize : number){
+        return this.httpClient.get<any>(`https://localhost:7045/api/Product/pageNumber/${pageNumber}/index/${pageSize}`)
+    }
+    getProductsMaxPage(pageSize : number){
+        return this.httpClient.get<any>(`https://localhost:7045/maxPage/${pageSize}`)
     }
 }

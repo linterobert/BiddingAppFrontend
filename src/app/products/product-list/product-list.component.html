@@ -4,29 +4,21 @@
   </head>
   <body>
     <app-header id = 'menu'></app-header>
-    <app-notifications *ngIf = 'notification' (notification) = 'notification'></app-notifications>
-    <div id = 'priceFilter'>
-        <p>Products filter: </p>
-        <p>min: </p>
-        <input [defaultValue]="100">
-        <input type="range" min="0" max = "800" step = "1">
-        <p>max: </p>
-        <input [defaultValue]="900">
-        <button><mat-icon>search</mat-icon></button>
-    </div>
+    <app-notifications *ngIf = 'notification' (notification) = 'notification' [userType]="userType" [userId]="userId"></app-notifications>
+
 
     <app-product-card-list  id = 'productList' [product_list]="products">
     </app-product-card-list>
    
     <div id="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#" id = 'page1'></a>
-        <a href="#" class="active" id = 'page2'></a>
-        <a href="#" id = 'page3'></a>
-        <a href="#" id = 'page4'></a>
-        <a href="#" id = 'page5'></a>
-        <a href="#" id = 'page6'></a>
-        <a href="#">&raquo;</a>
+        <a>&laquo;</a>
+        <a id = 'page1' (click)='changePage((this.pageNumber -1),false)'></a>
+        <a class="active" (click)='changePage((this.pageNumber),false)' id = 'page2'></a>
+        <a id = 'page3' (click)='changePage((this.pageNumber - (-1)),false)'></a>
+        <a id = 'page4' (click)='changePage((this.pageNumber - (-2)),false)'></a>
+        <a id = 'page5' (click)='changePage((this.pageNumber - (-3)),false)'></a>
+        <a id = 'page6' (click)='changePage((this.pageNumber - (-4)),false)'></a>
+        <a id = 'productLastPage'>&raquo;</a>
     </div>
     <app-footer></app-footer>
   </body>

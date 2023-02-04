@@ -13,6 +13,13 @@ import { UpdateReview } from "src/interfaces/updateReview";
 export class ClientService{
     constructor(private httpClient : HttpClient){}
 
+
+    getClientCard(clientId : number){
+        return this.httpClient.get<any>(`https://localhost:7045/clientID/${clientId}`)
+    }
+    updateClient(client : any, clientId : number){
+        return this.httpClient.put<any>(`https://localhost:7045/api/ClientProfile/${clientId}`, client);
+    }
     getClientNotificationsByPage(clientId: number, pageNumber: number, count: number){
         return this.httpClient.get<any>(`https://localhost:7045/api/ClientProfile/${clientId}/notifications/page-number/${pageNumber}/count/${count}`)
     }

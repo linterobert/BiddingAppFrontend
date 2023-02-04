@@ -7,12 +7,15 @@ import { CompanyProfilePageComponent } from './company-profile/company-profile-p
 import { PostProductComponent } from './company-profile/post-product/post-product.component';
 import { RegisterPageComponent } from './register/register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthGuard } from './guards/auth.guard';
+import { ClientAuthGuard } from './guards/client-auth.guard';
+import { CompanyAuthGuard } from './guards/company-auth.guard';
 
 const routes: Routes = [
-  { path : "products/:index/:id", component: ProductListComponent },
-  { path : "client-profile", component: ClientProfilePageComponent },
+  { path : "products/:pageNumber", component: ProductListComponent },
+  { path : "client-profile", component: ClientProfilePageComponent, canActivate: [ClientAuthGuard], },
   { path : "product/:id", component: ProductComponent },
-  { path : 'company-profile', component: CompanyProfilePageComponent },
+  { path : 'company-profile', component: CompanyProfilePageComponent, canActivate: [CompanyAuthGuard] },
   { path : 'register', component: RegisterPageComponent},
   { path : 'login', component: LoginPageComponent }
 ];

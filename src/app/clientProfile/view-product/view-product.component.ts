@@ -17,18 +17,21 @@ export class ViewProductComponent implements OnInit {
   images! : Observable<any>
 
   public countdown( x: Date ) : void{
-    const products = document.getElementsByClassName('timer');
-
-    for(let i = 0; i < products.length; i++){
-      var product = products[i] as HTMLElement;
+    const product = document.getElementById('timer'.concat(this.productCard.productId));
+    if(product){
       var pipe = new CountDownPipe;
       product.innerHTML = pipe.transform(x.toString());
+      var date = new Date(x.toString()).getTime();
+      var now = new Date().getTime();
       var color = product.style.color;
-      if(color != "red"){
-        product.style.color = "red";
-      }
-      else{
-        product.style.color = "black";
+      console.log(date-now);
+      if(date - now < 3600000 && date - now > 0 ){
+        if(color != "red"){
+          product.style.color = "red";
+        }
+        else{
+          product.style.color = "black";
+        }
       }
     }
   }

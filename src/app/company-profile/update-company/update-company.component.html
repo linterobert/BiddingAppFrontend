@@ -1,0 +1,23 @@
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="formGroup" *ngIf="(company | async) as Company">
+    <div class="formGroup" >
+        <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+            <mat-label>IBAN: </mat-label>
+            <input matInput id = 'sold' type="text" formControlName="iban" class="form-control" [errorStateMatcher]="matcher" placeholder="IBAN:" />
+            <mat-error *ngIf="updateForm.controls['iban'].hasError('required')">IBAN is required!</mat-error>
+        </mat-form-field>
+        <div id = 'profilePhoto'>
+            <label>New profile photo: </label>
+            <div class = 'imgAdd'>
+                <input id ='addImg' type = 'file' single value = 'select' #selectFile accept="image/png, image/gif, image/jpeg"
+                (change)="onFileSelected($event)" id = 'input'>
+            </div>
+            <div style = 'position: relative;' class="image-area" *ngFor="let image of images">
+                <img [src]="image.photo" width="100px" height="100px">
+                <a class="remove-image" (click)="removeImage(image)" style="display: inline;">&#215;</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <button id = 'fundsRegister' class="btn btn-primary" mat-raised-button color="white">Post </button>
+        </div>
+    </div>
+</form>

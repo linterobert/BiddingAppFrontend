@@ -5,6 +5,14 @@ import { CreateCard } from 'src/interfaces/create-card';
 import { CashOut } from 'src/interfaces/cash-out';
 import { ClientService } from 'src/app/services/client.service';
 import { Input } from '@angular/core';
+import {FormGroupDirective} from '@angular/forms';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-cash-out',
@@ -17,6 +25,7 @@ export class CashOutComponent implements OnInit {
   submitted = false;
   isSuccessful! : boolean;
   error = false;
+  matcher = new MyErrorStateMatcher();
   constructor(
     private formBuilder : FormBuilder,
     private clientService : ClientService

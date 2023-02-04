@@ -1,20 +1,22 @@
 <div class="col-6">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit3()">
         <div class="form-group">
-            <label>Product name: </label>
-            <input id = 'sold' type="text" formControlName="productName" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['productName'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['productName']}" />
-            <div *ngIf="error && registerForm.controls['productName'].errors" class="text-danger">
-                <div *ngIf="registerForm.controls['productName'].errors['required']">Product name required!</div>
-            </div>
-            <label>Starting price: </label>
-            <input id = 'cvc' type="number" formControlName="startingPrice" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['startingPrice'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['startingPrice'].errors}" />
-            <div *ngIf="error && registerForm.controls['startingPrice'].errors" class="text-danger">
-                <div *ngIf="registerForm.controls['startingPrice'].errors['required']">Price is required!</div>
-            </div>
-            <label>Expire Date: </label>
-            <input id = 'expireDate' type="datetime-local" formControlName="expireDate" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['expireDate'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['expireDate'].errors}" />
-            <div *ngIf="submitted && registerForm.controls['expireDate'].errors" class="text-danger">
-                <div *ngIf="registerForm.controls['expireDate'].errors['required']">Expire Date is required!</div>
+            <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+                <mat-label>Product name: </mat-label>
+                <input matInput id = 'sold' type="text" formControlName="productName" class="form-control" [errorStateMatcher]="matcher" placeholder="Product name:" />
+                <mat-error *ngIf="registerForm.controls['productName'].hasError('required')">Product name required!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill" style="font-size: 15px">
+                <mat-label>Starting price: </mat-label>
+                <input matInput id = 'cvc' formControlName="startingPrice" class="form-control" [errorStateMatcher]="matcher" placeholder="Product price:" />
+                <mat-error *ngIf="registerForm.controls['startingPrice'].hasError('required')">Price is required!</mat-error>
+            </mat-form-field>
+            <div>
+                <label>Expire Date: </label>
+                <input id = 'expireDate' type="datetime-local" [min]="date" formControlName="expireDate" class="form-control" [ngClass]="{ 'is-invalid': error && registerForm.controls['expireDate'].errors }" [ngClass]="{ 'is-valid': !registerForm.controls['expireDate'].errors}" />
+                <div *ngIf="submitted && registerForm.controls['expireDate'].errors" class="text-danger">
+                    <div *ngIf="registerForm.controls['expireDate'].errors['required']">Expire Date is required!</div>
+                </div>
             </div>
         </div>
     
@@ -25,11 +27,11 @@
             </div>
         </div>
         <div class = 'imgAdd'>
-            <input id ='addImg' type = 'file' single value = 'select' #selectFile accept="image/png, image/gif, image/jpeg"
+            <input id ='addImg' type = 'file' value = 'select' #selectFile accept="image/png, image/gif, image/jpeg"
             (change)="onFileSelected($event)" id = 'input'>
         </div>
         <div class="form-group">
-            <button id = 'fundsRegister' class="btn btn-primary" mat-raised-button color="white">Register</button>
+            <button id = 'fundsRegister' class="btn btn-primary" mat-raised-button color="white">Post </button>
         </div>
         </form>
 </div>

@@ -2,11 +2,15 @@
     <app-view-review-product [productID]="review.productId" (click)="repost(review.productId)"></app-view-review-product>
     <div class = 'productReview'>
         <div class = starNumber2>
+            <div>
             <p>Stars number:</p>
             <span class="fa fa-star checked" id = 'star{{i+1}}' (mouseover) = 'hoverStars(i+1)' *ngFor = "let item of [].constructor(review.starNumber); let i = index"></span>
             <span class="fa fa-star" id = 'star{{review.starNumber + i + 1}}' (mouseover) = 'hoverStars(review.starNumber + i + 1)' *ngFor = "let item of [].constructor(5-review.starNumber); let i = index"></span>
+            </div>
+            <div>
             <p>{{review.postTime | date:"dd/MM/yyyy HH:mm"}}</p>
             <mat-icon id = 'openEdit' (click) = 'changeType(review)'> border_color</mat-icon>
+            </div>
         </div>
         <div class = 'message'>
             <div *ngIf="!editBox">{{review.text}}</div>

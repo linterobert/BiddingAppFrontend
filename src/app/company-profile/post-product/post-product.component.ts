@@ -6,6 +6,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { PostProductImage } from 'src/interfaces/post-product-image';
 import { Validators } from '@angular/forms';
 import { Input } from '@angular/core';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { NgForm, FormControl } from '@angular/forms';
+import {FormGroupDirective} from '@angular/forms';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 
 @Component({
@@ -23,6 +33,8 @@ export class PostProductComponent implements OnInit {
   submitted = false;
   isSuccessful! : boolean;
   error = false;
+  matcher = new MyErrorStateMatcher();
+  date = new Date()
 
   constructor(
     private af: AngularFireStorage,
@@ -42,7 +54,7 @@ export class PostProductComponent implements OnInit {
       finalTime: this.registerForm.value['expireDate'],
       companyId: this.companyId
     }
-    console.log(postProduct)
+
     this.productService.postProduct(postProduct).subscribe(rez => {
       this.addData(rez.productId)}
       )
@@ -69,12 +81,14 @@ export class PostProductComponent implements OnInit {
               description: "string",
               productId: productId
             }
-            this.productService.addProductImage(image).subscribe(rez => window.location.href = `http://localhost:4200/product/${productId}`)
+            this.productService.addProductImage(image).subscribe(rez => console.log(rez));
         })})
     }
+    setTimeout(()=>{
+      window.location.href = `http://localhost:4200/product/${productId}`
+    },1500)
   }
   ngOnInit(): void {
-    console.log(this.companyId)
     this.registerForm = this.formBuilder.group({
       productName: ['', Validators.required],
       startingPrice: ['', Validators.required],

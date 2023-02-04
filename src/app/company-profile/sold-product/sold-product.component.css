@@ -42,13 +42,17 @@
     width: 100px;
     height: 150px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: relative;
 }
 .productImage{
+    position: absolute;
     max-width: 100px;
     max-height: 150px;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
 }
 button{
     margin-top: 5px;

@@ -20,3 +20,17 @@ app-product-images{
     width: 40%;
     margin: auto;
 }
+@media (max-width:1024px){
+    #product-informations-container{
+        background-color: gray;
+        width: 90vw;
+        height: auto;
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        border-style: solid;
+    }
+}

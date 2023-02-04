@@ -1,0 +1,14 @@
+<div *ngFor="let card of cards | async" class = "card">
+    <div>
+        Card number: {{card.cardNumber}}
+    </div>
+    <div>
+        CVC: {{card.cvc}}
+    </div>
+    <div>
+        Pin: {{card.pin}}
+    </div>
+    <div>
+        Expire date: {{card.expireDate}}
+    </div>
+</div>

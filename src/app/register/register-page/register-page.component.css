@@ -1,7 +1,7 @@
 #pageContainer{
     position: absolute;
     width: 100vw;
-    height: 100vh;
+    height: 130vh;
     right: 0;
     top: 0;
     bottom: 0;
@@ -21,6 +21,5 @@
     font-size: 50px;
     margin: auto;
     justify-self: center;
-    margin-top: 15vh;
+    margin-top: 5vh;
 }
-

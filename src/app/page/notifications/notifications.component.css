@@ -64,11 +64,32 @@
 }
 
 #notificationFooter{
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
     font-size: 15%;
+    flex-wrap: nowrap;
+}
+#left{
+    display: flex;
+    align-items: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
     justify-content: center;
-    align-items:center;
+}
+#center{
+    display: flex;
+    align-items: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    justify-content: center;
+}
+#rigth{
+    display: flex;
+    align-items: center;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    justify-content: center;
 }
 .material-icons{
     margin: auto;

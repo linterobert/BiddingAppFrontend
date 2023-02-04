@@ -47,3 +47,41 @@
     margin: auto;
     margin-bottom: 15px;
 }
+@media (max-width:1024px){
+    #actualImage{
+        position: relative;
+        height: 250px;
+        width: 250px;
+        justify-content: center;
+        background-color: gray;
+        display: flex;
+        flex-direction: column;
+        margin-left: -50px;
+    }
+    #resizeImage{
+        position: absolute;
+        border: solid;
+        max-height: 250px;
+        max-width: 250px;
+        top: -9999px;
+        bottom: -9999px;
+        left: -9999px;
+        right: -9999px;
+        margin: auto;
+        justify-self: center;
+    }
+    #imageList{
+        width: 250px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow: scroll;
+        white-space:nowrap;
+        scrollbar-width: thin;
+        overflow-y: hidden;
+        margin: auto;
+        margin-top: 20px;
+        margin-left: -50px;
+    }
+    
+}

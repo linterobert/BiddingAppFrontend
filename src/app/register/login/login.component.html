@@ -1,14 +1,24 @@
 <div class="form-group" [formGroup]="registerForm">
-    <div id = 'username'>
-        <label >Username: </label>
-        <input formControlName="username">
-    </div>
-    <div id = 'password'>
-        <label>Password: </label>
-        <input formControlName="password" type="password">
-    </div>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label >Username: </mat-label>
+        <input type="username" formControlName="username" matInput  [errorStateMatcher]="matcher" placeholder="Ex. username">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="registerForm.controls['username'].hasError('required')">
+            Username is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password: </mat-label>
+        <input formControlName="password" type="password" matInput [errorStateMatcher]="matcher" placeholder="Ex. password">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
+            Password is <strong> required</strong>
+        </mat-error>
+    </mat-form-field>
+    <div *ngIf="errorComponent">Username or password incorect</div>
 </div>
+
 <div id = 'buttons'>
     <button mat-flat-button color="white" (click)="login()">Login</button>
-    <button mat-flat-button color="white">Register</button>
+    <button mat-flat-button color="white" (click)="redirectRegister()">Register</button>
 </div>

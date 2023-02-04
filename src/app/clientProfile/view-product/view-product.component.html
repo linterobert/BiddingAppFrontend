@@ -1,22 +1,24 @@
-<div class = 'cropedImage'>
-    <img *ngIf="(images | async) as Image" class = 'productImage' src="{{Image.images[0].url}}">
-</div>
-<div id = 'productData'>
-    <div class = 'starNumber' *ngIf="(rating | async) as starNumber; else elseBlock">
-        <span class="fa fa-star checked" *ngFor="let item of [].constructor(round(starNumber)); let i = index"></span>
-        <span class="fa fa-star" *ngFor="let item of [].constructor(5- round(starNumber)); let i = index"></span>
+<div class = 'container'>
+    <div class = 'cropedImage'>
+        <img *ngIf="(images | async) as Image" class = 'productImage' src="{{Image.images[0].url}}">
     </div>
-    <ng-template #elseBlock>
-        <div class = 'starNumber'>
-            <span class="fa fa-star" *ngFor = "let item of [].constructor(5); let i = index"></span>
+    <div id = 'productData'>
+        <div class = 'starNumber' *ngIf="(rating | async) as starNumber; else elseBlock">
+            <span class="fa fa-star checked" *ngFor="let item of [].constructor(round(starNumber)); let i = index"></span>
+            <span class="fa fa-star" *ngFor="let item of [].constructor(5- round(starNumber)); let i = index"></span>
         </div>
-    </ng-template>
-    <div class = 'textProduct'>
-        <p class = 'rating' *ngIf="(rating | async) as starNumber">Rating: {{starNumber}}</p>
-        <p class = 'rating' *ngIf="!(rating | async) as starNumber">Rating: 0</p>
-        <p>Product ID: {{productCard.productId}}</p>
-        <p class = 'productTitle'>Product name: {{productCard.productName | titlecase}}</p>
-        <p class = 'timer'>{{productCard.finalTime | countdown}}</p>
-        <p class = 'actualPrice'>Actual price: {{productCard.actualPrice}}$</p>
+        <ng-template #elseBlock>
+            <div class = 'starNumber'>
+                <span class="fa fa-star" *ngFor = "let item of [].constructor(5); let i = index"></span>
+            </div>
+        </ng-template>
+        <div class = 'textProduct'>
+            <p class = 'rating' *ngIf="(rating | async) as starNumber">Rating: {{starNumber}}</p>
+            <p class = 'rating' *ngIf="!(rating | async) as starNumber">Rating: 0</p>
+            <p>Product ID: {{productCard.productId}}</p>
+            <p class = 'productTitle'>Product name: {{productCard.productName | titlecase}}</p>
+            <p class = 'timer' id="timer{{productCard.productId}}">{{productCard.finalTime | countdown}}</p>
+            <p class = 'actualPrice'>Actual price: {{productCard.actualPrice}}$</p>
+        </div>
     </div>
 </div>

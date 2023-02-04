@@ -20,6 +20,8 @@ export class ClientProfileComponent implements OnInit {
   addCardComponent = false;
   viewOwnProductsComponent = false;
   viewOwnReviewsComponent = false;
+  changeImageComponent = false;
+  viewCardsComponent = false;
   clientDetails! : Observable<any>
   constructor(
     private clientService : ClientService
@@ -28,6 +30,14 @@ export class ClientProfileComponent implements OnInit {
   ngOnInit(): void {
     this.clientDetails = this.clientService.getClientByID(this.clientId.toString());
     
+  }
+  round(number : number){
+    return Math.round(number);
+  }
+  logout(){
+    localStorage.setItem('token', '')
+    localStorage.setItem('expiration', '')
+    window.location.href = 'http://localhost:4200/login'
   }
   addFundsFunction(){
     if(this.fundsComponent != true){
@@ -175,6 +185,79 @@ export class ClientProfileComponent implements OnInit {
     else{
       this.viewOwnReviewsComponent = false;
       var viewOwnProductsBar = document.getElementById('viewOwnReviewsBar');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = '40px';
+      }
+    }
+  }
+  updateClientFunction(){
+    if(this.changeImageComponent != true){
+      this.fundsComponent = false;
+      this.addCardComponent = false;
+      this.cashOutComponent = false;
+      this.viewOwnProductsComponent = false;
+      this.changeImageComponent = true
+      var addCardBar = document.getElementById('addCardBar');
+      if(addCardBar){
+        addCardBar.style.height = '40px';
+      }
+      var fundsBar = document.getElementById('addFundsBar');
+      if(fundsBar){
+        fundsBar.style.height = '40px';
+      }
+      var cashOutBar = document.getElementById('cashOutBar');
+      if(cashOutBar){
+        cashOutBar.style.height = '40px';
+      }
+      var viewOwnProductsBar = document.getElementById('viewOwnProductsBar');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = '40px';
+      }
+      var viewOwnProductsBar = document.getElementById('changeProfileImage');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = 'auto';
+      }
+    }
+    else{
+      this.changeImageComponent = false;
+      var viewOwnProductsBar = document.getElementById('changeProfileImage');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = '40px';
+      }
+    }
+  }
+
+  viewCardsFunction(){
+    if(this.viewCardsComponent != true){
+      this.fundsComponent = false;
+      this.addCardComponent = false;
+      this.cashOutComponent = false;
+      this.viewOwnProductsComponent = false;
+      this.viewCardsComponent = true
+      var addCardBar = document.getElementById('addCardBar');
+      if(addCardBar){
+        addCardBar.style.height = '40px';
+      }
+      var fundsBar = document.getElementById('addFundsBar');
+      if(fundsBar){
+        fundsBar.style.height = '40px';
+      }
+      var cashOutBar = document.getElementById('cashOutBar');
+      if(cashOutBar){
+        cashOutBar.style.height = '40px';
+      }
+      var viewOwnProductsBar = document.getElementById('viewOwnProductsBar');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = '40px';
+      }
+      var viewOwnProductsBar = document.getElementById('viewCardsBar');
+      if(viewOwnProductsBar){
+        viewOwnProductsBar.style.height = 'auto';
+      }
+    }
+    else{
+      this.viewCardsComponent = false;
+      var viewOwnProductsBar = document.getElementById('viewCardsBar');
       if(viewOwnProductsBar){
         viewOwnProductsBar.style.height = '40px';
       }

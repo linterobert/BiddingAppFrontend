@@ -1,4 +1,3 @@
-@import "~bootstrap/dist/css/bootstrap.css";
 .image-area {
     margin-left: 10px;
     position: relative;
@@ -160,4 +159,8 @@
 }
 #fundsRegister{
     width: 100px;
+}
+.example-full-width {
+    margin-top: 20px;
+    width: 40%;
 }

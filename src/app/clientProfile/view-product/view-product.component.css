@@ -5,16 +5,25 @@
 *{
     font-size: 10px;
 }
+.container{
+    display: flex;
+    flex-direction: column;
+}
 .cropedImage{
-    justify-self: center;
+    margin: auto;
     margin-top: 10%;
     width: 100px;
     height: 150px;
     overflow: hidden;
-    justify-content: center;
+    position: relative;
 }
 .productImage{
-    justify-self: center;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
     width: auto;
     height: 100%;
 }
