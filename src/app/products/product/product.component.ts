@@ -41,6 +41,10 @@ export class ProductComponent implements OnInit {
           v.style.backgroundColor = 'black';
         }
       }
+      var backColor = document.getElementById('product-informations-container');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(90,90,90, 0.9)'
+      }
       if(background){
         for(let i = 0; i < background.length; i++){
           var button = background[i]
@@ -92,6 +96,10 @@ export class ProductComponent implements OnInit {
           v.style.color = 'black'
           v.style.backgroundColor = 'white';
         }
+      }
+      var backColor = document.getElementById('product-informations-container');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(256,256,256, 0.9)'
       }
       if(background){
         for(let i = 0; i < background.length; i++){

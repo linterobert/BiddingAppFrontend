@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <app-header id = 'menu'>
-
-    </app-header>
-    <div><app-notifications *ngIf = 'notification' (notification) = 'notification' [userId]="clientId" [userType]="'Client'"></app-notifications></div>
-
-    <app-client-profile id = 'clientProfile' *ngIf="(client | async) as MyClient" [clientId]="MyClient.clientProfileId">
-    </app-client-profile>
-   
-    <app-footer></app-footer>
-  </body>
-</html>
+<app-header id = 'menu'></app-header>
+<div><app-notifications *ngIf = 'notification' (notification) = 'notification' [userId]="clientId" [userType]="'Client'"></app-notifications></div>
+<app-client-profile id = 'clientProfile' *ngIf="(client | async) as MyClient" [clientId]="MyClient.clientProfileId">
+</app-client-profile><app-footer></app-footer>

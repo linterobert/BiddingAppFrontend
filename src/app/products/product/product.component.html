@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <app-header id = 'menu'>
-
-    </app-header>
-    <div><app-notifications *ngIf = 'notification' (notification) = 'notification' [userType]="userType" [userId]="userId"></app-notifications></div>
-
-    <app-product-informations id = 'pageContainer' *ngIf="(product | async) as productToReturn" [product]="productToReturn" [usertype]="userType" [username]="userName"></app-product-informations>
-    <app-product-review-list *ngIf="(product | async) as productToReturn" [product]="productToReturn" [usertype]="userType" [username]="userName" [userId]="userId"></app-product-review-list>
-
-    <app-footer></app-footer>
-  </body>
-</html>
+<app-header id = 'menu'></app-header>
+<div><app-notifications *ngIf = 'notification' (notification) = 'notification' [userType]="userType" [userId]="userId"></app-notifications></div>
+<app-product-informations id = 'pageContainer' *ngIf="(product | async) as productToReturn" [product]="productToReturn" [usertype]="userType" [username]="userName"></app-product-informations>
+<app-product-review-list *ngIf="(product | async) as productToReturn" [product]="productToReturn" [usertype]="userType" [username]="userName" [userId]="userId"></app-product-review-list>
+<app-footer></app-footer>

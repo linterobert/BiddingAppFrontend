@@ -1,26 +1,9 @@
-html {
-
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
-    display: block;
-    position:absolute;
-    background-color:white;
-    padding: 0,0,0,0;
-    font-size: 100px;
-}
-
-body{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
-}
 #menu{
     background-color:darkgray;
-    width: 100%;
+    width: 98.8vw;
     height: 10vh;
+    margin-left: -10px;
+    margin-top: -8px;
     display: flex;
     flex-direction: row;
     position:sticky;
@@ -37,7 +20,7 @@ body{
   margin-right: 10vw;
   width: auto;
   display: flex;
-  font-size: 15%;
+  font-size: 15px;
   flex-direction: row;
   flex-wrap: wrap;
   row-gap: 5vh;

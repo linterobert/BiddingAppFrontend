@@ -35,6 +35,10 @@ export class ClientProfilePageComponent implements OnInit {
           button.style.backgroundColor = "#3A3B3C";
         }
       }
+      var backColor = document.getElementById('clientProfile');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(90,90,90, 0.9)'
+      }
       var menu = document.getElementById('menu');
       if(menu){
         menu.style.backgroundColor = "#3A3B3C";
@@ -89,6 +93,10 @@ export class ClientProfilePageComponent implements OnInit {
           button.style.color = 'black';
           button.style.backgroundColor = "darkgray";
         }
+      }
+      var backColor = document.getElementById('clientProfile');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(256,256,256, 0.9)'
       }
       var menu = document.getElementById('menu');
       if(menu){
@@ -151,6 +159,10 @@ export class ClientProfilePageComponent implements OnInit {
           button.style.backgroundColor = "#3A3B3C";
         }
       }
+      var backColor = document.getElementById('clientProfile');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(90,90,90, 0.9)'
+      }
       var menu = document.getElementById('menu');
       if(menu){
         menu.style.backgroundColor = "#3A3B3C";
@@ -204,6 +216,10 @@ export class ClientProfilePageComponent implements OnInit {
           button.style.color = 'black';
           button.style.backgroundColor = "darkgray";
         }
+      }
+      var backColor = document.getElementById('clientProfile');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(256,256,256, 0.9)'
       }
       var menu = document.getElementById('menu');
       if(menu){

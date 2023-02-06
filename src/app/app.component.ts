@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'BiddingApp';
+
+  constructor(private el: ElementRef, private renderer:Renderer2){}
+  ngAfterViewInit(){
+    this.renderer.setStyle(this.el.nativeElement.ownerDocument.body,'background-image', 'url(https://wallpaperaccess.com/full/1950954.jpg)');
+    this.renderer.setStyle(this.el.nativeElement.ownerDocument.body,'background-size', 'cover');
+  }
 }
 

@@ -7,5 +7,8 @@ footer{
     justify-self: end;
     margin-top: auto;
     margin-bottom: 0px;
-    font-size: 10%;
+    font-size: 10px;
+    width: 98.8vw;
+    margin-left: -10px;
+    margin-bottom: -10px;
 }

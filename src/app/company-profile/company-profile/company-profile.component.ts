@@ -26,6 +26,10 @@ export class CompanyProfileComponent implements OnInit {
     var background = document.getElementsByTagName('button');
     if(type == 'White' || type == null){
       var body = document.getElementsByTagName('body');
+      var backColor = document.getElementById('profileContainer');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(90,90,90, 0.9)'
+      }
       if(body){
         for(let i = 0; i < body.length; i++){
           var v = body[i]
@@ -79,6 +83,10 @@ export class CompanyProfileComponent implements OnInit {
           v.style.color = 'black'
           v.style.backgroundColor = 'white';
         }
+      }
+      var backColor = document.getElementById('profileContainer');
+      if(backColor){
+        backColor.style.backgroundColor = 'rgba(256,256,256, 0.9)'
       }
       var comenzi = document.getElementsByClassName('commands') as HTMLCollectionOf<HTMLElement>;
       if(comenzi){

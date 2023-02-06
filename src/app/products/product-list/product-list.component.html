@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <app-header id = 'menu'></app-header>
-    <app-notifications *ngIf = 'notification' (notification) = 'notification' [userType]="userType" [userId]="userId"></app-notifications>
-
-
-    <app-product-card-list  id = 'productList' [product_list]="products">
-    </app-product-card-list>
-   
-    <div id="pagination">
-        <a>&laquo;</a>
-        <a id = 'page1' (click)='changePage((this.pageNumber -1),false)'></a>
-        <a class="active" (click)='changePage((this.pageNumber),false)' id = 'page2'></a>
-        <a id = 'page3' (click)='changePage((this.pageNumber - (-1)),false)'></a>
-        <a id = 'page4' (click)='changePage((this.pageNumber - (-2)),false)'></a>
-        <a id = 'page5' (click)='changePage((this.pageNumber - (-3)),false)'></a>
-        <a id = 'page6' (click)='changePage((this.pageNumber - (-4)),false)'></a>
-        <a id = 'productLastPage'>&raquo;</a>
-    </div>
-    <app-footer></app-footer>
-  </body>
-</html>
+<app-header id = 'menu'></app-header>
+<app-notifications *ngIf = 'notification' (notification) = 'notification' [userType]="userType" [userId]="userId"></app-notifications>
+<app-product-card-list  id = 'productList' [product_list]="products">
+</app-product-card-list>
+<div id="pagination">
+  <a>&laquo;</a>
+  <a id = 'page1' (click)='changePage((this.pageNumber -1),false)'></a>
+  <a class="active" (click)='changePage((this.pageNumber),false)' id = 'page2'></a>
+  <a id = 'page3' (click)='changePage((this.pageNumber - (-1)),false)'></a>
+  <a id = 'page4' (click)='changePage((this.pageNumber - (-2)),false)'></a>
+  <a id = 'page5' (click)='changePage((this.pageNumber - (-3)),false)'></a>
+  <a id = 'page6' (click)='changePage((this.pageNumber - (-4)),false)'></a>
+  <a id = 'productLastPage'>&raquo;</a>
+</div>
+<app-footer></app-footer>
